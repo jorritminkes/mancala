@@ -3,6 +3,7 @@ package mancala.domain;
 public abstract class Vakje {
     protected int pocketNumber;
     protected int aantalStenen;
+    protected int owner;
     protected Vakje volgendVakje;
 
     protected Vakje(int pocketNumber, Vakje eerste) {
@@ -17,19 +18,25 @@ public abstract class Vakje {
     }
 
     private Vakje maakVolgendVakje(Vakje eerste, int pocketNumber) {
-        switch (pocketNumber) {
-            case 7:
-            case 14:
-                return new Mancala(eerste, pocketNumber);
-            default:
-                return new Pocket(eerste, pocketNumber);
-        }
+        return switch (pocketNumber) {
+            case 1, 2, 3, 4, 5, 6 -> new Pocket(eerste, pocketNumber, 1);
+            case 7 -> new Mancala(eerste, pocketNumber, 1);
+            case 8, 9, 10, 11, 12, 13 -> new Pocket(eerste, pocketNumber, 2);
+            case 14 -> new Mancala(eerste, pocketNumber, 2);
+            default -> throw new IllegalArgumentException("Ongeldig pocketNumber: " + pocketNumber);
+        };
     }
 
     public abstract void zet();
+//    protected abstract void geefStenenDoor(int doorgegevenStenen);
+    protected abstract void ontvangStenen(int ontvangenStenen);
 
-    public int getPocketNumber () {
+    public int getPocketNumber() {
         return pocketNumber;
+    }
+
+    public int getOwner() {
+        return owner;
     }
 
     public int getAantalStenen() {
@@ -48,15 +55,15 @@ public abstract class Vakje {
         if (positie == 1) {
             return this;
         }
-        return this.volgendVakje.getVakjeOpPositie(positie - 1);
+        return volgendVakje.getVakjeOpPositie(positie - 1);
     }
 
-    protected void geefStenenDoor(int doorgegevenStenen) {
-        if (doorgegevenStenen != 0) {
-            volgendVakje.setAantalStenen(volgendVakje.getAantalStenen() + 1);
-            volgendVakje.geefStenenDoor(doorgegevenStenen - 1);
-        }
-    }
+//    protected void geefStenenDoor(int doorgegevenStenen) {
+//        if (doorgegevenStenen != 0) {
+//            volgendVakje.setAantalStenen(volgendVakje.getAantalStenen() + 1);
+//            volgendVakje.geefStenenDoor(doorgegevenStenen - 1);
+//        }
+//    }
 
 
 

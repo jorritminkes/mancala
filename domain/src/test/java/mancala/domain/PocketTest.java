@@ -67,7 +67,6 @@ public class PocketTest {
 
     @Test
     public void TestZetWordtOvergeslagenBijLeegVakje() {
-//        pocket.getPocketOpPositie(5).setAantalStenen(0);
         Vakje pocket5 = eersteVakje.getVakjeOpPositie(5);
         pocket5.zet();
         assertThrows(IllegalArgumentException.class, () -> {
@@ -104,6 +103,39 @@ public class PocketTest {
     public void TestPocketNummerVeertienIsMancala() {
         Vakje vakjeVeertien = eersteVakje.getVakjeOpPositie(14);
         assertTrue(vakjeVeertien instanceof Mancala);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {1,2,3,4,5,6})
+    public void TestPocketsOneToSixHaveOwnerOne(int pocketNumber) {
+        Vakje vakje = eersteVakje.getVakjeOpPositie(pocketNumber);
+        int ownerVakje = vakje.getOwner();
+        assertEquals(1, ownerVakje);
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {8,9,10,11,12,13})
+    public void TestPocketsEightToThirteenHaveOwnerTwo(int pocketNumber) {
+        Vakje vakje = eersteVakje.getVakjeOpPositie(pocketNumber);
+        int ownerVakje = vakje.getOwner();
+        assertEquals(2, ownerVakje);
+    }
+
+    @Test
+    public void TestMancalaKrijgtSteenVanEigenSpeler() {
+        Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
+        Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
+        vakje6.zet();
+        assertEquals(1, mancala1.aantalStenen);
+    }
+
+    @Test
+    public void TestMancalaKrijgtGeenSteenVanAndereSpeler() {
+        Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
+        Vakje mancala2 = eersteVakje.getVakjeOpPositie(14);
+        vakje6.setAantalStenen(8);
+        vakje6.zet();
+        assertEquals(0, mancala2.aantalStenen);
     }
 
 
