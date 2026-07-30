@@ -94,5 +94,9 @@ public class PocketTest {
         assertEquals(steentjesNaZet, aantalStenenInGecontroleerdePocket);
     }
 
+    public void TestPocketNumberZevenIsMancala() {
+
+    }
+
 
 }

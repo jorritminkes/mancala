@@ -7,6 +7,10 @@ public abstract class Vakje {
 
     public abstract void zet();
 
+    public int getPocketNumber () {
+        return pocketNumber;
+    }
+
     public int getAantalStenen() {
         return aantalStenen;
     }
