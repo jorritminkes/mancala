@@ -138,5 +138,50 @@ public class PocketTest {
         assertEquals(0, mancala2.aantalStenen);
     }
 
+    @Test
+    public void TestZetLuktBijEigenPocket() {
+        Vakje pocket5 = eersteVakje.getVakjeOpPositie(5);
+        assertDoesNotThrow(() -> {
+            pocket5.zet();
+        });
+    }
+
+    @Test
+    public void TestZetMisluktBijAndersPocket() {
+        Vakje pocket12 = eersteVakje.getVakjeOpPositie(12);
+        assertThrows(IllegalArgumentException.class, () -> {
+            pocket12.zet();
+        });
+    }
+
+    @Test
+    public void TestVerandertBeurtBijEindigenOpPocket() {
+        Vakje pocket1 = eersteVakje.getVakjeOpPositie(1);
+        pocket1.zet();
+        assertEquals(2, pocket1.getBeurt());
+    }
+
+    @Test
+    public void TestBlijftBeurtBijEindigenOpMancalaGelijk() {
+        Vakje pocket3 = eersteVakje.getVakjeOpPositie(3);
+        pocket3.zet();
+        assertEquals(1, pocket3.getBeurt());
+    }
+
+    @Test
+    public void TestLandenInLeegEigenVakje() {
+        Vakje pocket2 = eersteVakje.getVakjeOpPositie(2);
+        Vakje pocket6 = eersteVakje.getVakjeOpPositie(6);
+        Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
+        pocket6.setAantalStenen(0);
+        pocket2.zet();
+        assertEquals(5, mancala1.getAantalStenen());
+    }
+
+
+
+
+
+
 
 }

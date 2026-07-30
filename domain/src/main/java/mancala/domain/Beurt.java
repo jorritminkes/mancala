@@ -1,12 +1,13 @@
 package mancala.domain;
 
 public class Beurt {
-    private int beurt;
+    protected int beurt;
+
     public Beurt() {
         beurt = 1;
     }
 
-    public void switchBeurt() {
+    protected void switchBeurt() {
         if (beurt == 1) {
             beurt = 2;
         } else {
