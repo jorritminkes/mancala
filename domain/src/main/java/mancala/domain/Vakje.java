@@ -14,22 +14,6 @@ public abstract class Vakje {
         this.beurt = beurt;
         Vakje zichzelf = (eerste != null) ? eerste : this;
         this.eersteVakje = zichzelf;
-
-        if (pocketNumber < totaalVakjes) {
-            this.volgendVakje = maakVolgendVakje(zichzelf, pocketNumber + 1, beurt);
-        } else {
-            this.volgendVakje = zichzelf;
-        }
-    }
-
-    private Vakje maakVolgendVakje(Vakje eerste, int pocketNumber, Beurt beurt) {
-        return switch (pocketNumber) {
-            case 1, 2, 3, 4, 5, 6 -> new Pocket(eerste, pocketNumber, 1, beurt);
-            case 7 -> new Mancala(eerste, pocketNumber, 1, beurt);
-            case 8, 9, 10, 11, 12, 13 -> new Pocket(eerste, pocketNumber, 2, beurt);
-            case 14 -> new Mancala(eerste, pocketNumber, 2, beurt);
-            default -> throw new IllegalArgumentException("Ongeldig pocketNumber: " + pocketNumber);
-        };
     }
 
     public abstract void zet();

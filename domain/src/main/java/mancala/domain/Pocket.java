@@ -9,10 +9,23 @@ public class Pocket extends Vakje {
 
     protected Pocket(Vakje eerste, int pocketNumber, int owner, Beurt beurt) {
         super(pocketNumber, eerste, beurt);
-        aantalStenen = 4;
+        this.aantalStenen = 4;
         this.owner = owner;
 
+        int volgendNummer = pocketNumber + 1;
+
+        if (volgendNummer == 7) {
+            this.volgendVakje = new Mancala(this.eersteVakje, volgendNummer, 1, beurt);
+        }
+        if (volgendNummer == 14) {
+            this.volgendVakje = new Mancala(this.eersteVakje, volgendNummer, 2, beurt);
+        }
+        if (volgendNummer != 7 && volgendNummer < 14) {
+            int volgendOwner = (volgendNummer <= 6) ? 1 : 2;
+            this.volgendVakje = new Pocket(this.eersteVakje, volgendNummer, volgendOwner, beurt);
+        }
     }
+
 
     public boolean behoortPocketBijBeurt(int pocketNumber, Beurt beurt) {
         int huidigeSpeler = beurt.getBeurt();
