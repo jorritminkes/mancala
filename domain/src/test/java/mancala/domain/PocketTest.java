@@ -280,9 +280,10 @@ public class PocketTest {
     }
 
     @Test
-    public void TestNaPotKlaarWordtZetGeblokkeerd() {
+    public void TestNaPotKlaarWordtZetDirectGeblokkeerd() {
         Vakje pocket = eersteVakje.getVakjeOpPositie(1);
         speelKortsteSpel();
+
         assertThrows(IllegalStateException.class, () -> {
             pocket.zet();
         });

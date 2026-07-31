@@ -7,6 +7,7 @@ public abstract class Vakje {
     protected Vakje eersteVakje;
     protected Vakje volgendVakje;
     protected Beurt beurt;
+    private static final int totaalVakjes = 14;
 
     protected Vakje(int pocketNumber, Vakje eerste, Beurt beurt) {
         this.pocketNumber = pocketNumber;
@@ -14,7 +15,7 @@ public abstract class Vakje {
         Vakje zichzelf = (eerste != null) ? eerste : this;
         this.eersteVakje = zichzelf;
 
-        if (pocketNumber < 14) {
+        if (pocketNumber < totaalVakjes) {
             this.volgendVakje = maakVolgendVakje(zichzelf, pocketNumber + 1, beurt);
         } else {
             this.volgendVakje = zichzelf;
@@ -75,7 +76,7 @@ public abstract class Vakje {
     }
 
     public int getPocketNumberNeighbor(int pocketNumber) {
-        return 14-pocketNumber;
+        return totaalVakjes-pocketNumber;
     }
 
 
@@ -85,11 +86,7 @@ public abstract class Vakje {
 
     private boolean zijnPocketsLeegVanSpeler(int speler) {
         int totaalStenenPerSpeler = getTotaalStenenInPocketsPerSpeler(speler);
-        if (totaalStenenPerSpeler == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return totaalStenenPerSpeler == 0;
     }
 
     private int getTotaalStenenInPocketsPerSpeler(int speler) {
