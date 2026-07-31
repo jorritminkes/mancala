@@ -7,7 +7,6 @@ public abstract class Vakje {
     protected Vakje eersteVakje;
     protected Vakje volgendVakje;
     protected Beurt beurt;
-    private static final int totaalVakjes = 14;
 
     protected Vakje(int pocketNumber, Vakje eerste, Beurt beurt) {
         this.pocketNumber = pocketNumber;
@@ -58,11 +57,6 @@ public abstract class Vakje {
     public int getBeurt() {
         return beurt.getBeurt();
     }
-
-    public int getPocketNumberNeighbor(int pocketNumber) {
-        return totaalVakjes-pocketNumber;
-    }
-
 
     public boolean isSpelAfgelopen() {
         return zijnPocketsLeegVanSpeler(1) || zijnPocketsLeegVanSpeler(2);

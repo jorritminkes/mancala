@@ -2,6 +2,8 @@ package mancala.domain;
 
 
 public class Pocket extends Vakje {
+    private static final int totaalVakjes = 14;
+    private static final int pocketsPerKant = 6;
 
     public Pocket() {
         this(null, 1, 1, new Beurt());
@@ -20,7 +22,7 @@ public class Pocket extends Vakje {
         if (volgendNummer == 14) {
             this.volgendVakje = new Mancala(this.eersteVakje, volgendNummer, 2, beurt);
         }
-        if (volgendNummer != 7 && volgendNummer < 14) {
+        if (volgendNummer != 7 && volgendNummer < totaalVakjes) {
             int volgendOwner = (volgendNummer <= 6) ? 1 : 2;
             this.volgendVakje = new Pocket(this.eersteVakje, volgendNummer, volgendOwner, beurt);
         }
@@ -95,6 +97,10 @@ public class Pocket extends Vakje {
 
     private static int getPlayersMancalaPocketNumber(int huidigeSpeler) {
         return 7 * huidigeSpeler;
+    }
+
+    public int getPocketNumberNeighbor(int pocketNumber) {
+        return totaalVakjes-pocketNumber;
     }
 
     private int berekenBuitLeegVakje(int buurPocketNumber, int eigenPocketNumber) {

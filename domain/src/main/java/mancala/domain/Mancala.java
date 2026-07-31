@@ -1,11 +1,6 @@
 package mancala.domain;
 
 public class Mancala extends Vakje {
-//    protected Mancala(Vakje eerste, int pocketNumber, int owner, Beurt beurt) {
-//        super(pocketNumber, eerste, beurt);
-//        aantalStenen = 0;
-//        this.owner = owner;
-//    }
 
     protected Mancala(Vakje eerste, int pocketNumber, int owner, Beurt beurt) {
         super(pocketNumber, eerste, beurt);
