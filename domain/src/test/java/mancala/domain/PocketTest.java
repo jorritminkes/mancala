@@ -17,6 +17,19 @@ public class PocketTest {
         eersteVakje = new Pocket();
     }
 
+    public void speelKortsteSpel() {
+        eersteVakje.getVakjeOpPositie(3).zet();
+        eersteVakje.getVakjeOpPositie(6).zet();
+        eersteVakje.getVakjeOpPositie(9).zet();
+        eersteVakje.getVakjeOpPositie(10).zet();
+        eersteVakje.getVakjeOpPositie(1).zet();
+        eersteVakje.getVakjeOpPositie(11).zet();
+        eersteVakje.getVakjeOpPositie(1).zet();
+        eersteVakje.getVakjeOpPositie(12).zet();
+        eersteVakje.getVakjeOpPositie(1).zet();
+        eersteVakje.getVakjeOpPositie(13).zet();
+    }
+
     @Test
     public void TestPocketInstanceExists() {
         assertNotNull(eersteVakje, "Pocket should not be null");
@@ -170,41 +183,109 @@ public class PocketTest {
 
     @Test
     public void TestlandenOpLegeEigenPocketMancala() {
-        Vakje pocket2 = eersteVakje.getVakjeOpPositie(2);
-        Vakje pocket6 = eersteVakje.getVakjeOpPositie(6);
-        Vakje pocket8 = eersteVakje.getVakjeOpPositie(8);
+        Vakje pocket1 = eersteVakje.getVakjeOpPositie(1);
+        Vakje pocket5 = eersteVakje.getVakjeOpPositie(5);
         Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
-        pocket6.setAantalStenen(0);
-        pocket2.zet();
+        pocket5.setAantalStenen(0);
+        pocket1.zet();
         assertEquals(5, mancala1.getAantalStenen());
     }
 
     @Test
     public void TestlandenOpLegeEigenPocketPocket6leeg() {
-        Vakje pocket2 = eersteVakje.getVakjeOpPositie(2);
-        Vakje pocket6 = eersteVakje.getVakjeOpPositie(6);
-        Vakje pocket8 = eersteVakje.getVakjeOpPositie(8);
-        Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
-        pocket6.setAantalStenen(0);
-        pocket2.zet();
-        assertEquals(0, pocket6.getAantalStenen());
+        Vakje pocket1 = eersteVakje.getVakjeOpPositie(1);
+        Vakje pocket5 = eersteVakje.getVakjeOpPositie(5);
+        pocket5.setAantalStenen(0);
+        pocket1.zet();
+        assertEquals(0, pocket5.getAantalStenen());
     }
 
     @Test
     public void TestlandenOpLegeEigenPocketPocket8leeg() {
-        Vakje pocket2 = eersteVakje.getVakjeOpPositie(2);
-        Vakje pocket6 = eersteVakje.getVakjeOpPositie(6);
-        Vakje pocket8 = eersteVakje.getVakjeOpPositie(8);
-        Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
-        pocket6.setAantalStenen(0);
-        pocket2.zet();
-        assertEquals(0, pocket8.getAantalStenen());
+        Vakje pocket1 = eersteVakje.getVakjeOpPositie(1);
+        Vakje pocket5 = eersteVakje.getVakjeOpPositie(5);
+        Vakje pocket9 = eersteVakje.getVakjeOpPositie(9);
+        pocket5.setAantalStenen(0);
+        pocket1.zet();
+        assertEquals(0, pocket9.getAantalStenen());
     }
 
+    @Test
+    public void TestLandenOpTegenstanderLeegVakVoegtNietToeAanMancala() {
+        Vakje pocket4 = eersteVakje.getVakjeOpPositie(4);
+        Vakje pocket8 = eersteVakje.getVakjeOpPositie(8);
+        Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
+        pocket8.setAantalStenen(0);
+        pocket4.zet();
+        assertEquals(1, mancala1.getAantalStenen());
+    }
 
+    @ParameterizedTest
+    @CsvSource({"1,0", "2,5", "3,5", "4,5", "5,0", "6,5", "7,8", "8,0", "9,0", "10,5", "11,5", "12,5", "13,5", "14,0"})
+    public void TestDrieZettenBordControle(int pocketNumber, int verwachtteStenen) {
+        Vakje eersteZetPocket = eersteVakje.getVakjeOpPositie(5);
+        Vakje tweedeZetPocket = eersteVakje.getVakjeOpPositie(8);
+        Vakje derdeZetPocket = eersteVakje.getVakjeOpPositie(1);
+        Vakje controlePocket = eersteVakje.getVakjeOpPositie(pocketNumber);
+        eersteZetPocket.zet();
+        tweedeZetPocket.zet();
+        derdeZetPocket.zet();
+        assertEquals(verwachtteStenen, controlePocket.getAantalStenen(), "Foutieve pocket: " + pocketNumber);
+    }
 
+    @ParameterizedTest
+    @CsvSource({"1,4", "2,4", "3,4", "4,4", "5,0", "6,5", "7,1", "8,0", "9,6", "10,1", "11,6", "12,6", "13,6", "14,1"})
+    public void TestDrieZettenBeurtSwitchControle(int pocketNumber, int verwachtteStenen) {
+        Vakje eersteZetPocket = eersteVakje.getVakjeOpPositie(5);
+        Vakje tweedeZetPocket = eersteVakje.getVakjeOpPositie(10);
+        Vakje derdeZetPocket = eersteVakje.getVakjeOpPositie(8);
+        Vakje controlePocket = eersteVakje.getVakjeOpPositie(pocketNumber);
+        eersteZetPocket.zet();
+        tweedeZetPocket.zet();
+        derdeZetPocket.zet();
+        assertEquals(verwachtteStenen, controlePocket.getAantalStenen(), "Foutieve pocket: " + pocketNumber);
+    }
 
+    @ParameterizedTest
+    @ValueSource(ints = {8,9,10,11,12,13})
+    public void TestSpelerTweeKlaarNaKortsteSpel(int pocketNumber) {
+        speelKortsteSpel();
+        assertEquals(0, eersteVakje.getVakjeOpPositie(pocketNumber).getAantalStenen());
+    }
 
+    @Test
+    public void TestSpelNogNietKlaar() {
+        Vakje pocket = eersteVakje.getVakjeOpPositie(1);
+        pocket.zet();
+        assertEquals(false, pocket.isSpelAfgelopen());
+    }
 
+    @Test
+    public void TestSpelKlaar() {
+        speelKortsteSpel();
+        assertEquals(true, eersteVakje.isSpelAfgelopen());
+    }
+
+    @Test
+    public void TestSpelerEenWint() {
+        speelKortsteSpel();
+        assertEquals(1, eersteVakje.checkWinnaar());
+    }
+
+    @Test
+    public void TestNaPotIsTotaalStenen48() {
+        speelKortsteSpel();
+        int totaleStenen = eersteVakje.berekenEindscore(1) + eersteVakje.berekenEindscore(2);
+        assertEquals(48, totaleStenen);
+    }
+
+    @Test
+    public void TestNaPotKlaarWordtZetGeblokkeerd() {
+        Vakje pocket = eersteVakje.getVakjeOpPositie(1);
+        speelKortsteSpel();
+        assertThrows(IllegalStateException.class, () -> {
+            pocket.zet();
+        });
+    }
 
 }

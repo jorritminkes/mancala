@@ -24,6 +24,10 @@ public class Pocket extends Vakje {
     @Override
     public void zet() {
 
+        if (isSpelAfgelopen()) {
+            throw new IllegalStateException("Het spel is al afgelopen!");
+        }
+
         if (aantalStenen == 0) {
             throw new IllegalArgumentException("Kan niet op een leeg vakje spelen");
         }
@@ -57,7 +61,7 @@ public class Pocket extends Vakje {
     }
 
     private void indienVakjeLeegDanVakjeEnBuurNaarMancala(int huidigeSpeler) {
-        if (volgendVakje.aantalStenen==0) {
+        if (aantalStenen==1) {
             landenOpLegeEigenPocket(huidigeSpeler);
         }
     }
@@ -70,10 +74,14 @@ public class Pocket extends Vakje {
 
             int buit = berekenBuitLeegVakje(buurPocketNumber, eigenPocketNumber);
 
-            getVakjeOpPositie(7 * huidigeSpeler).voegAantalStenenToe(buit);
+            getVakjeOpPositie(getPlayersMancalaPocketNumber(huidigeSpeler)).voegAantalStenenToe(buit);
             getVakjeOpPositie(eigenPocketNumber).setAantalStenen(0);
             getVakjeOpPositie(buurPocketNumber).setAantalStenen(0);
         }
+    }
+
+    private static int getPlayersMancalaPocketNumber(int huidigeSpeler) {
+        return 7 * huidigeSpeler;
     }
 
     private int berekenBuitLeegVakje(int buurPocketNumber, int eigenPocketNumber) {
