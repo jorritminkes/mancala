@@ -169,13 +169,36 @@ public class PocketTest {
     }
 
     @Test
-    public void TestLandenInLeegEigenVakje() {
+    public void TestlandenOpLegeEigenPocketMancala() {
         Vakje pocket2 = eersteVakje.getVakjeOpPositie(2);
         Vakje pocket6 = eersteVakje.getVakjeOpPositie(6);
+        Vakje pocket8 = eersteVakje.getVakjeOpPositie(8);
         Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
         pocket6.setAantalStenen(0);
         pocket2.zet();
         assertEquals(5, mancala1.getAantalStenen());
+    }
+
+    @Test
+    public void TestlandenOpLegeEigenPocketPocket6leeg() {
+        Vakje pocket2 = eersteVakje.getVakjeOpPositie(2);
+        Vakje pocket6 = eersteVakje.getVakjeOpPositie(6);
+        Vakje pocket8 = eersteVakje.getVakjeOpPositie(8);
+        Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
+        pocket6.setAantalStenen(0);
+        pocket2.zet();
+        assertEquals(0, pocket6.getAantalStenen());
+    }
+
+    @Test
+    public void TestlandenOpLegeEigenPocketPocket8leeg() {
+        Vakje pocket2 = eersteVakje.getVakjeOpPositie(2);
+        Vakje pocket6 = eersteVakje.getVakjeOpPositie(6);
+        Vakje pocket8 = eersteVakje.getVakjeOpPositie(8);
+        Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
+        pocket6.setAantalStenen(0);
+        pocket2.zet();
+        assertEquals(0, pocket8.getAantalStenen());
     }
 
 

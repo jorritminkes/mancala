@@ -50,37 +50,40 @@ public class Pocket extends Vakje {
         }
 
         if (ontvangenStenen == 1) {
-            landenOpLegeEigenPocket(huidigeSpeler);
+            indienVakjeLeegDanVakjeEnBuurNaarMancala(huidigeSpeler);
             beurt.switchBeurt();
         }
 
     }
 
+    private void indienVakjeLeegDanVakjeEnBuurNaarMancala(int huidigeSpeler) {
+        if (volgendVakje.aantalStenen==0) {
+            landenOpLegeEigenPocket(huidigeSpeler);
+        }
+    }
+
     private void landenOpLegeEigenPocket(int huidigeSpeler) {
         if (behoortPocketBijBeurt(getPocketNumber(), beurt)) {
 
-            int eigenPocketNumber = getVakjeOpPositie(this.getPocketNumber()).getPocketNumber();
-            int buurPocketNumber = getPocketNumberNeighbor((this.pocketNumber));
+            int eigenPocketNumber = this.getPocketNumber();
+            int buurPocketNumber = getPocketNumberNeighbor(this.pocketNumber);
 
-            Vakje eigenVakje = getVakjeOpPositie(eigenPocketNumber);
-            Vakje buurVakje = getVakjeOpPositie(buurPocketNumber);
-
-            int buit = berekenBuit(buurPocketNumber, eigenPocketNumber);
+            int buit = berekenBuitLeegVakje(buurPocketNumber, eigenPocketNumber);
 
             getVakjeOpPositie(7 * huidigeSpeler).voegAantalStenenToe(buit);
             getVakjeOpPositie(eigenPocketNumber).setAantalStenen(0);
             getVakjeOpPositie(buurPocketNumber).setAantalStenen(0);
-
         }
     }
 
-    private int berekenBuit(int buurPocketNumber, int eigenPocketNumber) {
+    private int berekenBuitLeegVakje(int buurPocketNumber, int eigenPocketNumber) {
         int buit = 0;
         if (getVakjeOpPositie(buurPocketNumber).getAantalStenen() > 0) {
             buit = getVakjeOpPositie(eigenPocketNumber).getAantalStenen() + getVakjeOpPositie(buurPocketNumber).getAantalStenen();
         }
         return buit;
     }
+
 
 
 }

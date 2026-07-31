@@ -4,6 +4,7 @@ public abstract class Vakje {
     protected int pocketNumber;
     protected int aantalStenen;
     protected int owner;
+    protected Vakje eersteVakje;
     protected Vakje volgendVakje;
     protected Beurt beurt;
 
@@ -11,6 +12,7 @@ public abstract class Vakje {
         this.pocketNumber = pocketNumber;
         this.beurt = beurt;
         Vakje zichzelf = (eerste != null) ? eerste : this;
+        this.eersteVakje = zichzelf;
 
         if (pocketNumber < 14) {
             this.volgendVakje = maakVolgendVakje(zichzelf, pocketNumber + 1, beurt);
@@ -53,16 +55,22 @@ public abstract class Vakje {
         this.aantalStenen = aantalStenen;
     }
 
+
     protected Vakje getVolgendVakje() {
         return volgendVakje;
     }
 
+
     public Vakje getVakjeOpPositie(int positie) {
+        return eersteVakje.getVakjeOpPositieRecursief(positie);
+    }
+    private Vakje getVakjeOpPositieRecursief(int positie) {
         if (positie == 1) {
             return this;
         }
-        return volgendVakje.getVakjeOpPositie(positie - 1);
+        return volgendVakje.getVakjeOpPositieRecursief(positie - 1);
     }
+
 
     public int getBeurt() {
         return beurt.getBeurt();
@@ -70,14 +78,6 @@ public abstract class Vakje {
 
     public int getPocketNumberNeighbor(int pocketNumber) {
         return 14-pocketNumber;
-    }
-
-    public int getPocketNumberOfMancala(int pocketNumber) {
-        if ((pocketNumber > 0) && (pocketNumber < 8)) {
-            return 7;
-        } else {
-            return 14;
-        }
     }
 
 

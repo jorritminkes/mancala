@@ -17,11 +17,18 @@ public class Mancala extends Vakje {
 
         if (owner == huidigeSpeler) {
             this.setAantalStenen(aantalStenen + 1);
-            this.volgendVakje.ontvangStenen(ontvangenStenen - 1);
+            mancalaGeeftStenenDoor(ontvangenStenen);
+
         } else {
             this.volgendVakje.ontvangStenen(ontvangenStenen);
         }
 
+    }
+
+    private void mancalaGeeftStenenDoor(int ontvangenStenen) {
+        if (ontvangenStenen - 1 > 0) {
+            this.volgendVakje.ontvangStenen(ontvangenStenen - 1);
+        }
     }
 
 }
