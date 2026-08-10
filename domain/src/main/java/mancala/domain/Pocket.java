@@ -26,16 +26,6 @@ public class Pocket extends Vakje {
         }
     }
 
-    public Pocket getPocketOpPositie(int positie) {
-        Vakje vakje = getVakjeOpPositie(positie);
-
-        if (vakje instanceof Pocket pocket) {
-            return pocket;
-        }
-
-        throw new IllegalArgumentException("Vakje op positie " + positie + " is een Mancala, geen Pocket!");
-    }
-
     public void zet() {
         if (getAantalStenen() == 0) {
             throw new IllegalArgumentException("Kan niet op een leeg vakje spelen");
