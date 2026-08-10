@@ -1,27 +1,38 @@
 package mancala.domain;
 
 public abstract class Vakje {
-    protected int pocketNumber;
-    protected int aantalStenen;
-    protected int owner;
-    protected Vakje eersteVakje;
-    protected Vakje volgendVakje;
-    protected Beurt beurt;
+    private int pocketNumber;
+    private int aantalStenen;
+    private int owner;
+    private final Vakje eersteVakje;
+    private Vakje volgendVakje;
+    private Beurt beurt;
 
-    protected Vakje(int pocketNumber, Vakje eerste, Beurt beurt) {
+    Vakje(int pocketNumber, Vakje eerste, Beurt beurt) {
         this.pocketNumber = pocketNumber;
         this.beurt = beurt;
-        Vakje zichzelf = (eerste != null) ? eerste : this;
-        this.eersteVakje = zichzelf;
+        this.eersteVakje = (eerste != null) ? eerste : this;
     }
 
-    public abstract void zet();
-
-    protected abstract void ontvangStenen(int ontvangenStenen);
+    abstract void ontvangStenen(int ontvangenStenen);
 
     public int getPocketNumber() {
         return pocketNumber;
     }
+
+    void setOwner(int owner) {
+        this.owner = owner;
+    }
+
+    void setVolgendVakje(Vakje volgendVakje) {
+        this.volgendVakje = volgendVakje;
+    }
+
+    Vakje getEersteVakje() {
+        return eersteVakje;
+    }
+
+    void switchBeurt() { beurt.switchBeurt();}
 
     public int getOwner() {
         return owner;
@@ -31,31 +42,31 @@ public abstract class Vakje {
         return aantalStenen;
     }
 
-    protected void setAantalStenen(int aantalStenen) {
+    void setAantalStenen(int aantalStenen) {
         this.aantalStenen = aantalStenen;
     }
 
-    protected void voegAantalStenenToe(int aantalStenenToevoegen) {
+    void voegAantalStenenToe(int aantalStenenToevoegen) {
         setAantalStenen(this.aantalStenen + aantalStenenToevoegen);
     }
 
-    protected Vakje getVolgendVakje() {
+    Vakje getVolgendVakje() {
         return volgendVakje;
+    }
+
+    public int getBeurt() {
+        return beurt.getBeurt();
     }
 
     public Vakje getVakjeOpPositie(int positie) {
         return eersteVakje.getVakjeOpPositieRecursief(positie);
     }
+
     private Vakje getVakjeOpPositieRecursief(int positie) {
         if (positie == 1) {
             return this;
         }
         return volgendVakje.getVakjeOpPositieRecursief(positie - 1);
-    }
-
-
-    public int getBeurt() {
-        return beurt.getBeurt();
     }
 
     public boolean isSpelAfgelopen() {
@@ -68,7 +79,7 @@ public abstract class Vakje {
     }
 
     private int getTotaalStenenInPocketsPerSpeler(int speler) {
-        int mancalaOffset = speler == 1 ? 0 : 7;
+        int mancalaOffset = (speler == 1) ? 0 : 7;
         int totaalStenen = 0;
         totaalStenen += this.getVakjeOpPositie(mancalaOffset + 1).getAantalStenen();
         totaalStenen += this.getVakjeOpPositie(mancalaOffset + 2).getAantalStenen();
@@ -78,35 +89,6 @@ public abstract class Vakje {
         totaalStenen += this.getVakjeOpPositie(mancalaOffset + 6).getAantalStenen();
         return totaalStenen;
     }
-
-//    public int checkWinnaar() {
-//        if (!isSpelAfgelopen()) {
-//            return -1;
-//        }
-//
-//        int eindscoreSpeler1 = berekenEindscore(1);
-//        int eindscoreSpeler2 = berekenEindscore(2);
-//
-//        if (eindscoreSpeler1 > eindscoreSpeler2) {
-//            return 1;
-//        }
-//
-//        if (eindscoreSpeler2 > eindscoreSpeler1) {
-//            return 2;
-//        }
-//
-//        if (eindscoreSpeler1 == eindscoreSpeler2) {
-//            return 0;
-//        }
-//        return -1;
-//    }
-//
-//    protected int berekenEindscore(int speler) {
-//        int mancalaPocketNumberVanSpeler = 7*speler;
-//        int score;
-//        score = getVakjeOpPositie(mancalaPocketNumberVanSpeler).getAantalStenen() + getTotaalStenenInPocketsPerSpeler(speler);
-//        return score;
-//    }
 
 
 }

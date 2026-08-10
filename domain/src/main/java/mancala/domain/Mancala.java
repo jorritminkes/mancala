@@ -1,40 +1,34 @@
 package mancala.domain;
 
 public class Mancala extends Vakje {
+    private static final int totaalVakjes = 14;
 
-    protected Mancala(Vakje eerste, int pocketNumber, int owner, Beurt beurt) {
+    Mancala(Vakje eerste, int pocketNumber, int owner, Beurt beurt) {
         super(pocketNumber, eerste, beurt);
-        this.aantalStenen = 0;
-        this.owner = owner;
+        setAantalStenen(0);
+        setOwner(owner);
 
-        if (pocketNumber < 14) {
-            this.volgendVakje = new Pocket(this.eersteVakje, pocketNumber + 1, 2, beurt);
+        if (pocketNumber < totaalVakjes) {
+            setVolgendVakje(new Pocket(this.getEersteVakje(), pocketNumber + 1, 2, beurt));
         } else {
-            this.volgendVakje = this.eersteVakje;
+            setVolgendVakje(getEersteVakje());
         }
     }
 
-    @Override
-    public void zet() {
-        throw new UnsupportedOperationException("Mancala kan niet als zet gekozen worden!");
-    }
+    void ontvangStenen(int ontvangenStenen) {
+        int huidigeSpeler = getBeurt();
 
-    public void ontvangStenen(int ontvangenStenen) {
-        int huidigeSpeler = beurt.getBeurt();
-
-        if (owner == huidigeSpeler) {
-            this.setAantalStenen(aantalStenen + 1);
+        if (getOwner() == huidigeSpeler) {
+            voegAantalStenenToe(1);
             mancalaGeeftStenenDoor(ontvangenStenen);
-
         } else {
-            this.volgendVakje.ontvangStenen(ontvangenStenen);
+            getVolgendVakje().ontvangStenen(ontvangenStenen);
         }
-
     }
 
     private void mancalaGeeftStenenDoor(int ontvangenStenen) {
-        if (ontvangenStenen - 1 > 0) {
-            this.volgendVakje.ontvangStenen(ontvangenStenen - 1);
+        if (ontvangenStenen > 1) {
+            getVolgendVakje().ontvangStenen(ontvangenStenen - 1);
         }
     }
 
