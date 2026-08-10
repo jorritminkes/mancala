@@ -109,13 +109,13 @@ public class PocketTest {
     @Test
     public void TestPocketNumberZevenIsMancala() {
         Vakje vakjeZeven = eersteVakje.getVakjeOpPositie(7);
-        assertTrue(vakjeZeven instanceof Mancala);
+        assertInstanceOf(Mancala.class, vakjeZeven);
     }
 
     @Test
     public void TestPocketNummerVeertienIsMancala() {
         Vakje vakjeVeertien = eersteVakje.getVakjeOpPositie(14);
-        assertTrue(vakjeVeertien instanceof Mancala);
+        assertInstanceOf(Mancala.class, vakjeVeertien);
     }
 
     @ParameterizedTest
@@ -257,13 +257,13 @@ public class PocketTest {
     public void TestSpelNogNietKlaar() {
         Vakje testVakje = eersteVakje.getVakjeOpPositie(1);
         ((Pocket) testVakje).zet();
-        assertEquals(false, testVakje.isSpelAfgelopen());
+        assertFalse(testVakje.isSpelAfgelopen());
     }
 
     @Test
     public void TestSpelKlaar() {
         speelKortsteSpel();
-        assertEquals(true, eersteVakje.isSpelAfgelopen());
+        assertTrue(eersteVakje.isSpelAfgelopen());
     }
 
     @ParameterizedTest
@@ -306,5 +306,15 @@ public class PocketTest {
         speelKortsteSpel();
         assertEquals(7, mancala.getAantalStenen());
     }
+
+    @Test
+    public void TestZetOpMancalaWerktNiet() {
+        Vakje mancala = eersteVakje.getVakjeOpPositie(7);
+        assertThrows(ClassCastException.class, () -> {
+            ((Pocket) mancala).zet();
+        });
+    }
+
+
 
 }

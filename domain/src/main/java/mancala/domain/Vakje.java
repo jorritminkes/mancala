@@ -1,12 +1,17 @@
 package mancala.domain;
 
 public abstract class Vakje {
-    private int pocketNumber;
+    private final int pocketNumber;
     private int aantalStenen;
     private int owner;
     private final Vakje eersteVakje;
     private Vakje volgendVakje;
     private Beurt beurt;
+
+    static final int totaalVakjes = 14;
+    static final int pocketsPerKant = 6;
+    static final int vakjesPerKant = 7;
+
 
     Vakje(int pocketNumber, Vakje eerste, Beurt beurt) {
         this.pocketNumber = pocketNumber;
@@ -16,27 +21,19 @@ public abstract class Vakje {
 
     abstract void ontvangStenen(int ontvangenStenen);
 
+
     public int getPocketNumber() {
         return pocketNumber;
+    }
+
+    public int getOwner() {
+        return owner;
     }
 
     void setOwner(int owner) {
         this.owner = owner;
     }
 
-    void setVolgendVakje(Vakje volgendVakje) {
-        this.volgendVakje = volgendVakje;
-    }
-
-    Vakje getEersteVakje() {
-        return eersteVakje;
-    }
-
-    void switchBeurt() { beurt.switchBeurt();}
-
-    public int getOwner() {
-        return owner;
-    }
 
     public int getAantalStenen() {
         return aantalStenen;
@@ -50,12 +47,17 @@ public abstract class Vakje {
         setAantalStenen(this.aantalStenen + aantalStenenToevoegen);
     }
 
+
+    Vakje getEersteVakje() {
+        return eersteVakje;
+    }
+
     Vakje getVolgendVakje() {
         return volgendVakje;
     }
 
-    public int getBeurt() {
-        return beurt.getBeurt();
+    void setVolgendVakje(Vakje volgendVakje) {
+        this.volgendVakje = volgendVakje;
     }
 
     public Vakje getVakjeOpPositie(int positie) {
@@ -69,26 +71,13 @@ public abstract class Vakje {
         return volgendVakje.getVakjeOpPositieRecursief(positie - 1);
     }
 
-    public boolean isSpelAfgelopen() {
-        return zijnPocketsLeegVanSpeler(1) || zijnPocketsLeegVanSpeler(2);
+
+    public int getBeurt() {
+        return beurt.getBeurt();
     }
 
-    private boolean zijnPocketsLeegVanSpeler(int speler) {
-        int totaalStenenPerSpeler = getTotaalStenenInPocketsPerSpeler(speler);
-        return totaalStenenPerSpeler == 0;
-    }
+    void switchBeurt() { beurt.switchBeurt();}
 
-    private int getTotaalStenenInPocketsPerSpeler(int speler) {
-        int mancalaOffset = (speler == 1) ? 0 : 7;
-        int totaalStenen = 0;
-        totaalStenen += this.getVakjeOpPositie(mancalaOffset + 1).getAantalStenen();
-        totaalStenen += this.getVakjeOpPositie(mancalaOffset + 2).getAantalStenen();
-        totaalStenen += this.getVakjeOpPositie(mancalaOffset + 3).getAantalStenen();
-        totaalStenen += this.getVakjeOpPositie(mancalaOffset + 4).getAantalStenen();
-        totaalStenen += this.getVakjeOpPositie(mancalaOffset + 5).getAantalStenen();
-        totaalStenen += this.getVakjeOpPositie(mancalaOffset + 6).getAantalStenen();
-        return totaalStenen;
-    }
-
+    abstract boolean isSpelAfgelopen();
 
 }

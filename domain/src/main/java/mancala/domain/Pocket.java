@@ -2,8 +2,6 @@ package mancala.domain;
 
 
 public class Pocket extends Vakje {
-    private static final int totaalVakjes = 14;
-    private static final int pocketsPerKant = 6;
 
     public Pocket() {
         this(null, 1, 1, new Beurt());
@@ -28,39 +26,23 @@ public class Pocket extends Vakje {
         }
     }
 
+    public Pocket getPocketOpPositie(int positie) {
+        Vakje vakje = getVakjeOpPositie(positie);
 
-    private boolean behoortPocketBijBeurt(int pocketNumber, int huidigeSpeler) {
-        return (huidigeSpeler == 1 && pocketNumber >= 1 && pocketNumber <= pocketsPerKant)
-                || (huidigeSpeler == 2 && pocketNumber >= 8 && pocketNumber <= 13);
+        if (vakje instanceof Pocket pocket) {
+            return pocket;
+        }
+
+        throw new IllegalArgumentException("Vakje op positie " + positie + " is een Mancala, geen Pocket!");
     }
 
     public void zet() {
-
         if (getAantalStenen() == 0) {
             throw new IllegalArgumentException("Kan niet op een leeg vakje spelen");
         }
 
         stenenDoorgeven();
-
         leegAllePocketsAlsSpelKlaarIs();
-    }
-
-    private void leegAllePocketsAlsSpelKlaarIs() {
-        if (isSpelAfgelopen()) {
-            leegPocketsNaarMancala(getMancalaPositie(1));
-            leegPocketsNaarMancala(getMancalaPositie(2));
-        }
-    }
-
-    private void leegPocketsNaarMancala(int mancalaPositie) {
-        Vakje mancala = getVakjeOpPositie(mancalaPositie);
-        int startPositie = mancalaPositie - pocketsPerKant;
-        int eindPositie = mancalaPositie - 1;
-        for (int positie = startPositie; positie <= eindPositie; ++positie) {
-            Vakje pocket = getVakjeOpPositie(positie);
-            mancala.voegAantalStenenToe(pocket.getAantalStenen());
-            pocket.setAantalStenen(0);
-        }
     }
 
     private void stenenDoorgeven() {
@@ -78,6 +60,29 @@ public class Pocket extends Vakje {
         geefStenenDoorAanVolgende(ontvangenStenen);
         if (ontvangenStenen == 1) {
             beeindigZet(getBeurt());
+        }
+    }
+
+    private boolean behoortPocketBijBeurt(int pocketNumber, int huidigeSpeler) {
+        return ((huidigeSpeler == 1) && (pocketNumber > 0) && (pocketNumber < vakjesPerKant))
+                || ((huidigeSpeler == 2) && (pocketNumber > vakjesPerKant) && (pocketNumber < totaalVakjes));
+    }
+
+    private void leegAllePocketsAlsSpelKlaarIs() {
+        if (isSpelAfgelopen()) {
+            leegPocketsNaarMancala(getMancalaPositie(1));
+            leegPocketsNaarMancala(getMancalaPositie(2));
+        }
+    }
+
+    private void leegPocketsNaarMancala(int mancalaPositie) {
+        Vakje mancala = getVakjeOpPositie(mancalaPositie);
+        int startPositie = mancalaPositie - pocketsPerKant;
+        int eindPositie = mancalaPositie - 1;
+        for (int positie = startPositie; positie <= eindPositie; ++positie) {
+            Vakje pocket = getVakjeOpPositie(positie);
+            mancala.voegAantalStenenToe(pocket.getAantalStenen());
+            pocket.setAantalStenen(0);
         }
     }
 
@@ -103,7 +108,6 @@ public class Pocket extends Vakje {
 
             int eigenPocketNumber = this.getPocketNumber();
             int buurPocketNumber = getPocketNumberNeighbor(getPocketNumber());
-
             int buit = berekenBuitLeegVakje(buurPocketNumber, eigenPocketNumber);
 
             getVakjeOpPositie(getMancalaPositie(huidigeSpeler)).voegAantalStenenToe(buit);
@@ -113,7 +117,7 @@ public class Pocket extends Vakje {
     }
 
     private static int getMancalaPositie(int huidigeSpeler) {
-        return huidigeSpeler == 1 ? 7 : 14;
+        return huidigeSpeler == 1 ? vakjesPerKant : 2*vakjesPerKant;
     }
 
     private int getPocketNumberNeighbor(int pocketNumber) {
@@ -126,6 +130,27 @@ public class Pocket extends Vakje {
             buit = getVakjeOpPositie(eigenPocketNumber).getAantalStenen() + getVakjeOpPositie(buurPocketNumber).getAantalStenen();
         }
         return buit;
+    }
+
+    @Override
+    public boolean isSpelAfgelopen() {
+        return zijnPocketsLeegVanSpeler(1) || zijnPocketsLeegVanSpeler(2);
+    }
+
+    private boolean zijnPocketsLeegVanSpeler(int speler) {
+        int totaalStenenPerSpeler = getTotaalStenenInPocketsPerSpeler(speler);
+        return totaalStenenPerSpeler == 0;
+    }
+
+    int getTotaalStenenInPocketsPerSpeler(int speler) {
+        int mancalaOffset = (speler == 1) ? 0 : vakjesPerKant;
+        int totaalStenen = 0;
+
+        for (int positie = 1; positie <= pocketsPerKant; positie++) {
+            totaalStenen += getVakjeOpPositie(mancalaOffset + positie).getAantalStenen();
+        }
+
+        return totaalStenen;
     }
 
 
