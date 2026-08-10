@@ -315,6 +315,57 @@ public class PocketTest {
         });
     }
 
+    @Test
+    public void TestMancalaBuurmanWordtOvergeslagen() {
+        Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
+        Vakje mancalaBuurman = eersteVakje.getVakjeOpPositie(14);
+        vakje6.setAantalStenen(100);
+        ((Pocket) vakje6).zet();
+        assertEquals(0, mancalaBuurman.getAantalStenen());
+    }
 
+    @Test
+    public void TestEigenMancalaWordtNietOvergeslagen() {
+        Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
+        Vakje mancalaEigen = eersteVakje.getVakjeOpPositie(7);
+        vakje6.setAantalStenen(100);
+        ((Pocket) vakje6).zet();
+        assertEquals(8, mancalaEigen.getAantalStenen());
+    }
 
+    @Test
+    public void TestZelfGelegdeSteenBijBuurmanVeroveren() {
+        Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
+        Vakje vakjeBuurman = eersteVakje.getVakjeOpPositie(Vakje.totaalVakjes - 6);
+        vakjeBuurman.setAantalStenen(0);
+        vakje6.setAantalStenen(13);
+        ((Pocket) vakje6).zet();
+        assertEquals(0, vakjeBuurman.getAantalStenen());
+    }
+
+    @Test
+    public void TestZelfGelegdeSteenViaBuurmanVeroveren() {
+        Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
+        Vakje vakjeBuurman = eersteVakje.getVakjeOpPositie(Vakje.totaalVakjes - 6);
+        vakjeBuurman.setAantalStenen(0);
+        vakje6.setAantalStenen(13);
+        ((Pocket) vakje6).zet();
+        assertEquals(0, vakje6.getAantalStenen());
+    }
+
+    @Test
+    public void TestBlijftMancalaGelijkNaVeroverenMetLegeOverkant() {
+        Vakje gespeeldeVakje = eersteVakje.getVakjeOpPositie(1);
+        Vakje legeVakje = eersteVakje.getVakjeOpPositie(5);
+        Vakje eigenMancala = eersteVakje.getVakjeOpPositie(7);
+        Vakje vakjeLegeBuurman = eersteVakje.getVakjeOpPositie(9);
+
+        legeVakje.setAantalStenen(0);
+        vakjeLegeBuurman.setAantalStenen(0);
+        eigenMancala.setAantalStenen(5);
+
+        ((Pocket) gespeeldeVakje).zet();
+
+        assertEquals(5, eigenMancala.getAantalStenen());
+    }
 }

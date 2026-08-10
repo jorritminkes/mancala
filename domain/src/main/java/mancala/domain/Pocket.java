@@ -20,7 +20,7 @@ public class Pocket extends Vakje {
         if (volgendNummer == getMancalaPositie(2)) {
             setVolgendVakje(new Mancala(getEersteVakje(), volgendNummer, 2, beurt));
         }
-        if (volgendNummer != 7 && volgendNummer < totaalVakjes) {
+        if (volgendNummer != vakjesPerKant && volgendNummer < totaalVakjes) {
             int volgendOwner = (volgendNummer <= pocketsPerKant) ? 1 : 2;
             setVolgendVakje(new Pocket(getEersteVakje(), volgendNummer, volgendOwner, beurt));
         }
