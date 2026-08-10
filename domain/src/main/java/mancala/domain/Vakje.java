@@ -35,12 +35,12 @@ public abstract class Vakje {
         this.aantalStenen = aantalStenen;
     }
 
-    protected Vakje getVolgendVakje() {
-        return volgendVakje;
-    }
-
     protected void voegAantalStenenToe(int aantalStenenToevoegen) {
         setAantalStenen(this.aantalStenen + aantalStenenToevoegen);
+    }
+
+    protected Vakje getVolgendVakje() {
+        return volgendVakje;
     }
 
     public Vakje getVakjeOpPositie(int positie) {
@@ -68,7 +68,7 @@ public abstract class Vakje {
     }
 
     private int getTotaalStenenInPocketsPerSpeler(int speler) {
-        int mancalaOffset = 7*(speler-1);
+        int mancalaOffset = speler == 1 ? 0 : 7;
         int totaalStenen = 0;
         totaalStenen += this.getVakjeOpPositie(mancalaOffset + 1).getAantalStenen();
         totaalStenen += this.getVakjeOpPositie(mancalaOffset + 2).getAantalStenen();
@@ -79,34 +79,34 @@ public abstract class Vakje {
         return totaalStenen;
     }
 
-    public int checkWinnaar() {
-        if (!isSpelAfgelopen()) {
-            return -1;
-        }
-
-        int eindscoreSpeler1 = berekenEindscore(1);
-        int eindscoreSpeler2 = berekenEindscore(2);
-
-        if (eindscoreSpeler1 > eindscoreSpeler2) {
-            return 1;
-        }
-
-        if (eindscoreSpeler2 > eindscoreSpeler1) {
-            return 2;
-        }
-
-        if (eindscoreSpeler1 == eindscoreSpeler2) {
-            return 0;
-        }
-        return -1;
-    }
-
-    protected int berekenEindscore(int speler) {
-        int mancalaPocketNumberVanSpeler = 7*speler;
-        int score;
-        score = getVakjeOpPositie(mancalaPocketNumberVanSpeler).getAantalStenen() + getTotaalStenenInPocketsPerSpeler(speler);
-        return score;
-    }
+//    public int checkWinnaar() {
+//        if (!isSpelAfgelopen()) {
+//            return -1;
+//        }
+//
+//        int eindscoreSpeler1 = berekenEindscore(1);
+//        int eindscoreSpeler2 = berekenEindscore(2);
+//
+//        if (eindscoreSpeler1 > eindscoreSpeler2) {
+//            return 1;
+//        }
+//
+//        if (eindscoreSpeler2 > eindscoreSpeler1) {
+//            return 2;
+//        }
+//
+//        if (eindscoreSpeler1 == eindscoreSpeler2) {
+//            return 0;
+//        }
+//        return -1;
+//    }
+//
+//    protected int berekenEindscore(int speler) {
+//        int mancalaPocketNumberVanSpeler = 7*speler;
+//        int score;
+//        score = getVakjeOpPositie(mancalaPocketNumberVanSpeler).getAantalStenen() + getTotaalStenenInPocketsPerSpeler(speler);
+//        return score;
+//    }
 
 
 }

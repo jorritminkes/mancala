@@ -139,7 +139,7 @@ public class PocketTest {
         Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
         Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
         vakje6.zet();
-        assertEquals(1, mancala1.aantalStenen);
+        assertEquals(1, mancala1.getAantalStenen());
     }
 
     @Test
@@ -148,7 +148,7 @@ public class PocketTest {
         Vakje mancala2 = eersteVakje.getVakjeOpPositie(14);
         vakje6.setAantalStenen(8);
         vakje6.zet();
-        assertEquals(0, mancala2.aantalStenen);
+        assertEquals(0, mancala2.getAantalStenen());
     }
 
     @Test
@@ -266,18 +266,18 @@ public class PocketTest {
         assertEquals(true, eersteVakje.isSpelAfgelopen());
     }
 
-    @Test
-    public void TestSpelerEenWint() {
-        speelKortsteSpel();
-        assertEquals(1, eersteVakje.checkWinnaar());
-    }
+//    @Test
+//    public void TestSpelerEenWint() {
+//        speelKortsteSpel();
+//        assertEquals(1, eersteVakje.checkWinnaar());
+//    }
 
-    @Test
-    public void TestNaPotIsTotaalStenen48() {
-        speelKortsteSpel();
-        int totaleStenen = eersteVakje.berekenEindscore(1) + eersteVakje.berekenEindscore(2);
-        assertEquals(48, totaleStenen);
-    }
+//    @Test
+//    public void TestNaPotIsTotaalStenen48() {
+//        speelKortsteSpel();
+//        int totaleStenen = eersteVakje.berekenEindscore(1) + eersteVakje.berekenEindscore(2);
+//        assertEquals(48, totaleStenen);
+//    }
 
     @Test
     public void TestNaPotKlaarWordtZetDirectGeblokkeerd() {
