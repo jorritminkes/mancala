@@ -144,9 +144,11 @@ public class PocketTest {
 
     @Test
     public void TestMancalaKrijgtGeenSteenVanAndereSpeler() {
+        int[] testOpstelling = {4,4,4,4,4,8,  0,  4,4,4,4,4,4,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+
         Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
         Vakje mancala2 = eersteVakje.getVakjeOpPositie(14);
-        vakje6.setAantalStenen(8);
         ((Pocket) vakje6).zet();
         assertEquals(0, mancala2.getAantalStenen());
     }
@@ -183,39 +185,44 @@ public class PocketTest {
 
     @Test
     public void TestLandenOpLegeEigenPocketMancala() {
+        int[] testOpstelling = {4,4,4,4,0,4,  0,  4,4,4,4,4,4,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+
         Vakje vakje1 = eersteVakje.getVakjeOpPositie(1);
-        Vakje vakje5 = eersteVakje.getVakjeOpPositie(5);
         Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
-        vakje5.setAantalStenen(0);
         ((Pocket) vakje1).zet();
         assertEquals(5, mancala1.getAantalStenen());
     }
 
     @Test
     public void TestLandenOpLegeEigenPocketPocket6leeg() {
+        int[] testOpstelling = {4,4,4,4,0,4,  0,  4,4,4,4,4,4,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+
         Vakje vakje1 = eersteVakje.getVakjeOpPositie(1);
         Vakje vakje5 = eersteVakje.getVakjeOpPositie(5);
-        vakje5.setAantalStenen(0);
         ((Pocket) vakje1).zet();
         assertEquals(0, vakje5.getAantalStenen());
     }
 
     @Test
     public void TestLandenOpLegeEigenPocketPocket8leeg() {
+        int[] testOpstelling = {4,4,4,4,0,4,  0,  4,4,4,4,4,4,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+
         Vakje vakje1 = eersteVakje.getVakjeOpPositie(1);
-        Vakje vakje5 = eersteVakje.getVakjeOpPositie(5);
         Vakje vakje9 = eersteVakje.getVakjeOpPositie(9);
-        vakje5.setAantalStenen(0);
         ((Pocket) vakje1).zet();
         assertEquals(0, vakje9.getAantalStenen());
     }
 
     @Test
     public void TestLandenOpTegenstanderLeegVakVoegtNietToeAanMancala() {
+        int[] testOpstelling = {4,4,4,4,4,4,  0,  0,4,4,4,4,4,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+
         Vakje vakje4 = eersteVakje.getVakjeOpPositie(4);
-        Vakje vakje8 = eersteVakje.getVakjeOpPositie(8);
         Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
-        vakje8.setAantalStenen(0);
         ((Pocket) vakje4).zet();
         assertEquals(1, mancala1.getAantalStenen());
     }
@@ -317,52 +324,54 @@ public class PocketTest {
 
     @Test
     public void TestMancalaBuurmanWordtOvergeslagen() {
+        int[] testOpstelling = {4,4,4,4,4,100,  0,  4,4,4,4,4,4,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+
         Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
         Vakje mancalaBuurman = eersteVakje.getVakjeOpPositie(14);
-        vakje6.setAantalStenen(100);
         ((Pocket) vakje6).zet();
         assertEquals(0, mancalaBuurman.getAantalStenen());
     }
 
     @Test
     public void TestEigenMancalaWordtNietOvergeslagen() {
+        int[] testOpstelling = {4,4,4,4,4,100,  0,  4,4,4,4,4,4,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+
         Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
         Vakje mancalaEigen = eersteVakje.getVakjeOpPositie(7);
-        vakje6.setAantalStenen(100);
         ((Pocket) vakje6).zet();
         assertEquals(8, mancalaEigen.getAantalStenen());
     }
 
     @Test
     public void TestVeroverenMisluktAlsTegenoverliggendePocketLeegIs() {
+        int[] testOpstelling = {4,4,4,4,4,13,  0,  0,4,4,4,4,4,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+
         Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
         Vakje vakjeBuurman = eersteVakje.getVakjeOpPositie(Vakje.totaalVakjes - 6);
-        vakjeBuurman.setAantalStenen(0);
-        vakje6.setAantalStenen(13);
         ((Pocket) vakje6).zet();
         assertEquals(0, vakjeBuurman.getAantalStenen());
     }
 
     @Test
     public void TestSteenGegooidInLegePocketMisluktVerovering() {
+        int[] testOpstelling = {4,4,4,4,4,13,  0,  0,4,4,4,4,4,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+
         Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
-        Vakje vakjeBuurman = eersteVakje.getVakjeOpPositie(Vakje.totaalVakjes - 6);
-        vakjeBuurman.setAantalStenen(0);
-        vakje6.setAantalStenen(13);
         ((Pocket) vakje6).zet();
         assertEquals(0, vakje6.getAantalStenen());
     }
 
     @Test
     public void TestBlijftMancalaGelijkNaVeroverenMetLegeOverkant() {
-        Vakje gespeeldeVakje = eersteVakje.getVakjeOpPositie(1);
-        Vakje legeVakje = eersteVakje.getVakjeOpPositie(5);
-        Vakje eigenMancala = eersteVakje.getVakjeOpPositie(7);
-        Vakje vakjeLegeBuurman = eersteVakje.getVakjeOpPositie(9);
+        int[] testOpstelling = {4,4,4,4,0,4,  5,  4,0,4,4,4,4,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
 
-        legeVakje.setAantalStenen(0);
-        vakjeLegeBuurman.setAantalStenen(0);
-        eigenMancala.setAantalStenen(5);
+        Vakje gespeeldeVakje = eersteVakje.getVakjeOpPositie(1);
+        Vakje eigenMancala = eersteVakje.getVakjeOpPositie(7);
 
         ((Pocket) gespeeldeVakje).zet();
 
