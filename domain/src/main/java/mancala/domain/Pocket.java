@@ -41,7 +41,7 @@ public class Pocket extends Vakje {
     }
 
     private void stenenDoorgeven() {
-        if (behoortPocketBijBeurt(getPocketNumber(), getBeurt())) {
+        if ( behoortPocketBijBeurt(getPocketNumber(), getBeurt()) ) {
             int doorgegevenStenen = getAantalStenen();
             setAantalStenen(0);
             getVolgendVakje().ontvangStenen(doorgegevenStenen);
@@ -50,6 +50,7 @@ public class Pocket extends Vakje {
         }
     }
 
+    @Override
     void ontvangStenen(int ontvangenStenen) {
         voegAantalStenenToe(1);
         geefStenenDoorAanVolgende(ontvangenStenen);

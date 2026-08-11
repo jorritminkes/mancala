@@ -8,9 +8,13 @@ public abstract class Vakje {
     private Vakje volgendVakje;
     private Beurt beurt;
 
-    static final int totaalVakjes = 14;
     static final int pocketsPerKant = 6;
-    static final int vakjesPerKant = 7;
+    static final int vakjesPerKant = pocketsPerKant + 1;
+    static final int totaalVakjes = 2 * vakjesPerKant;
+
+//    static final int totaalVakjes = 14;
+//    static final int pocketsPerKant = 6;
+//    static final int vakjesPerKant = 7;
 
 
     Vakje(int pocketNumber, Vakje eerste, Beurt beurt) {
@@ -22,11 +26,11 @@ public abstract class Vakje {
     abstract void ontvangStenen(int ontvangenStenen);
 
 
-    public int getPocketNumber() {
+    int getPocketNumber() {
         return pocketNumber;
     }
 
-    public int getOwner() {
+    int getOwner() {
         return owner;
     }
 
@@ -35,7 +39,7 @@ public abstract class Vakje {
     }
 
 
-    public int getAantalStenen() {
+    int getAantalStenen() {
         return aantalStenen;
     }
 
@@ -60,7 +64,7 @@ public abstract class Vakje {
         this.volgendVakje = volgendVakje;
     }
 
-    public Vakje getVakjeOpPositie(int positie) {
+    Vakje getVakjeOpPositie(int positie) {
         return eersteVakje.getVakjeOpPositieRecursief(positie);
     }
 
@@ -72,7 +76,7 @@ public abstract class Vakje {
     }
 
 
-    public int getBeurt() {
+    int getBeurt() {
         return beurt.getBeurt();
     }
 

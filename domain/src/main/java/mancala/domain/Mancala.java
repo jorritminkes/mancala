@@ -14,6 +14,7 @@ public class Mancala extends Vakje {
         }
     }
 
+    @Override
     void ontvangStenen(int ontvangenStenen) {
         int huidigeSpeler = getBeurt();
 
