@@ -78,6 +78,17 @@ public abstract class Vakje {
 
     void switchBeurt() { beurt.switchBeurt();}
 
-    abstract boolean isSpelAfgelopen();
+
+    public boolean isSpelAfgelopen() {
+        return zijnPocketsLeegVanSpeler(1) || zijnPocketsLeegVanSpeler(2);
+    }
+
+    private boolean zijnPocketsLeegVanSpeler(int speler) {
+        int startPositie = (speler == 1) ? 1 : vakjesPerKant + 1;
+        int totaalStenen = getVakjeOpPositie(startPositie).telStenenInPockets();
+        return totaalStenen == 0;
+    }
+
+    abstract int telStenenInPockets();
 
 }

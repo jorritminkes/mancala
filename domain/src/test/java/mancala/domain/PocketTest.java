@@ -14,7 +14,7 @@ public class PocketTest {
 
     @BeforeEach
     public void setUp() {
-        eersteVakje = new Pocket();
+        eersteVakje = new Pocket(1);
     }
 
     public void speelKortsteSpel() {

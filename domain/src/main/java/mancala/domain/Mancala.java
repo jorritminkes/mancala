@@ -31,26 +31,9 @@ public class Mancala extends Vakje {
         }
     }
 
-
     @Override
-    public boolean isSpelAfgelopen() {
-        return zijnPocketsLeegVanSpeler(1) || zijnPocketsLeegVanSpeler(2);
-    }
-
-    private boolean zijnPocketsLeegVanSpeler(int speler) {
-        int totaalStenenPerSpeler = getTotaalStenenInPocketsPerSpeler(speler);
-        return totaalStenenPerSpeler == 0;
-    }
-
-    int getTotaalStenenInPocketsPerSpeler(int speler) {
-        int mancalaOffset = (speler == 1) ? 0 : vakjesPerKant;
-        int totaalStenen = 0;
-
-        for (int positie = 1; positie <= pocketsPerKant; positie++) {
-            totaalStenen += getVakjeOpPositie(mancalaOffset + positie).getAantalStenen();
-        }
-
-        return totaalStenen;
+    int telStenenInPockets() {
+        return 0;
     }
 
 }
