@@ -12,13 +12,10 @@ public abstract class Vakje {
     static final int vakjesPerKant = pocketsPerKant + 1;
     static final int totaalVakjes = 2 * vakjesPerKant;
 
-//    static final int totaalVakjes = 14;
-//    static final int pocketsPerKant = 6;
-//    static final int vakjesPerKant = 7;
 
-
-    Vakje(int pocketNumber, Vakje eerste, Beurt beurt) {
+    Vakje(int pocketNumber, int aantalStenen, Vakje eerste, Beurt beurt) {
         this.pocketNumber = pocketNumber;
+        this.aantalStenen = aantalStenen;
         this.beurt = beurt;
         this.eersteVakje = (eerste != null) ? eerste : this;
     }
@@ -43,8 +40,12 @@ public abstract class Vakje {
         return aantalStenen;
     }
 
-    void setAantalStenen(int aantalStenen) {
+    private void setAantalStenen(int aantalStenen) {
         this.aantalStenen = aantalStenen;
+    }
+
+    void leegVakje() {
+        setAantalStenen(0);
     }
 
     void voegAantalStenenToe(int aantalStenenToevoegen) {

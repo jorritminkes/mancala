@@ -3,8 +3,8 @@ package mancala.domain;
 public class Mancala extends Vakje {
 
     Mancala(Vakje eerste, int pocketNumber, int owner, Beurt beurt) {
-        super(pocketNumber, eerste, beurt);
-        setAantalStenen(0);
+        super(pocketNumber, 0, eerste, beurt);
+//        setAantalStenen(0);
         setOwner(owner);
 
         if (pocketNumber < totaalVakjes) {
