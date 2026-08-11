@@ -19,18 +19,15 @@ public class Mancala extends Vakje {
     @Override
     void ontvangStenen(int ontvangenStenen) {
         int huidigeSpeler = getBeurt();
+        int stenenOmDoorTeGeven = ontvangenStenen;
 
         if (getOwner() == huidigeSpeler) {
             voegAantalStenenToeAanVakje(1);
-            mancalaGeeftStenenDoor(ontvangenStenen);
-        } else {
-            getVolgendVakje().ontvangStenen(ontvangenStenen);
+            stenenOmDoorTeGeven = ontvangenStenen - 1;
         }
-    }
 
-    private void mancalaGeeftStenenDoor(int ontvangenStenen) {
-        if (ontvangenStenen > 1) {
-            getVolgendVakje().ontvangStenen(ontvangenStenen - 1);
+        if (stenenOmDoorTeGeven > 0) {
+            getVolgendVakje().ontvangStenen(stenenOmDoorTeGeven);
         }
     }
 

@@ -65,7 +65,7 @@ public class Pocket extends Vakje {
             beeindigZet(getBeurt());
         }
         if (stenenOmDoorTeGeven > 0) {
-            geefStenenDoorAanVolgende(stenenOmDoorTeGeven);
+            getVolgendVakje().ontvangStenen(stenenOmDoorTeGeven);
         }
     }
 
@@ -91,10 +91,6 @@ public class Pocket extends Vakje {
         }
     }
 
-    private void geefStenenDoorAanVolgende(int stenenOmDoorTeGeven) {
-            getVolgendVakje().ontvangStenen(stenenOmDoorTeGeven);
-    }
-
     private void beeindigZet(int beurt) {
         veroverOpLeegVakje(beurt);
         switchBeurt();
@@ -114,7 +110,7 @@ public class Pocket extends Vakje {
             int buit = berekenBuitLeegVakje(buurPocketNumber, eigenPocketNumber);
 
             getVakjeOpPositie(getMancalaPositie(huidigeSpeler)).voegAantalStenenToeAanVakje(buit);
-            getVakjeOpPositie(eigenPocketNumber).leegVakje();
+            leegVakje();
             getVakjeOpPositie(buurPocketNumber).leegVakje();
         }
     }
