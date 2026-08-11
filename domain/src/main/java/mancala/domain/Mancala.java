@@ -21,7 +21,7 @@ public class Mancala extends Vakje {
         int huidigeSpeler = getBeurt();
 
         if (getOwner() == huidigeSpeler) {
-            voegAantalStenenToe(1);
+            voegAantalStenenToeAanVakje(1);
             mancalaGeeftStenenDoor(ontvangenStenen);
         } else {
             getVolgendVakje().ontvangStenen(ontvangenStenen);

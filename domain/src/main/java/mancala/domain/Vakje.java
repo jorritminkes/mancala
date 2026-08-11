@@ -48,7 +48,7 @@ public abstract class Vakje {
         setAantalStenen(0);
     }
 
-    void voegAantalStenenToe(int aantalStenenToevoegen) {
+    void voegAantalStenenToeAanVakje(int aantalStenenToevoegen) {
         setAantalStenen(this.aantalStenen + aantalStenenToevoegen);
     }
 

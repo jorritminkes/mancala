@@ -37,8 +37,8 @@ public class Pocket extends Vakje {
 
 //        stenenDoorgeven();
 
-        if (behoortPocketBijBeurt(getPocketNumber(), getBeurt())) {
-            stenenDoorgeven();
+        if (behoortPocketBijBeurt(getBeurt())) {
+            leegVakjeEnGeefStenenDoor();
         } else {
             throw new IllegalArgumentException("Het is niet jouw beurt om deze pocket te spelen");
         }
@@ -46,22 +46,30 @@ public class Pocket extends Vakje {
         leegAllePocketsAlsSpelKlaarIs();
     }
 
-    private void stenenDoorgeven() {
-        int doorgegevenStenen = getAantalStenen();
+    private void leegVakjeEnGeefStenenDoor() {
+        int stenenOmDoorTeGeven = getAantalStenen();
         leegVakje();
-        getVolgendVakje().ontvangStenen(doorgegevenStenen);
-    }
-
-    @Override
-    void ontvangStenen(int ontvangenStenen) {
-        voegAantalStenenToe(1);
-        geefStenenDoorAanVolgende(ontvangenStenen);
-        if (ontvangenStenen == 1) {
-            beeindigZet(getBeurt());
+        if (stenenOmDoorTeGeven >= 1) {
+            getVolgendVakje().ontvangStenen(stenenOmDoorTeGeven);
         }
     }
 
-    private boolean behoortPocketBijBeurt(int pocketNumber, int huidigeSpeler) {
+    @Override
+    void ontvangStenen(int stenenInHand) {
+
+        voegAantalStenenToeAanVakje(1);
+
+        int stenenOmDoorTeGeven = stenenInHand - 1;
+
+        if (stenenOmDoorTeGeven == 0) {
+            beeindigZet(getBeurt());
+        }
+        if (stenenOmDoorTeGeven > 0) {
+            geefStenenDoorAanVolgende(stenenOmDoorTeGeven);
+        }
+    }
+
+    private boolean behoortPocketBijBeurt(int huidigeSpeler) {
         return huidigeSpeler == getOwner();
     }
 
@@ -78,15 +86,13 @@ public class Pocket extends Vakje {
         int eindPositie = mancalaPositie - 1;
         for (int positie = startPositie; positie <= eindPositie; ++positie) {
             Vakje pocket = getVakjeOpPositie(positie);
-            mancala.voegAantalStenenToe(pocket.getAantalStenen());
+            mancala.voegAantalStenenToeAanVakje(pocket.getAantalStenen());
             pocket.leegVakje();
         }
     }
 
-    private void geefStenenDoorAanVolgende(int ontvangenStenen) {
-        if (ontvangenStenen > 1) {
-            getVolgendVakje().ontvangStenen(ontvangenStenen - 1);
-        }
+    private void geefStenenDoorAanVolgende(int stenenOmDoorTeGeven) {
+            getVolgendVakje().ontvangStenen(stenenOmDoorTeGeven);
     }
 
     private void beeindigZet(int beurt) {
@@ -101,13 +107,13 @@ public class Pocket extends Vakje {
     }
 
     private void landenOpLegeEigenPocket(int huidigeSpeler) {
-        if (behoortPocketBijBeurt(getPocketNumber(), getBeurt())) {
+        if (behoortPocketBijBeurt(getBeurt())) {
 
             int eigenPocketNumber = this.getPocketNumber();
             int buurPocketNumber = getPocketNumberNeighbor(getPocketNumber());
             int buit = berekenBuitLeegVakje(buurPocketNumber, eigenPocketNumber);
 
-            getVakjeOpPositie(getMancalaPositie(huidigeSpeler)).voegAantalStenenToe(buit);
+            getVakjeOpPositie(getMancalaPositie(huidigeSpeler)).voegAantalStenenToeAanVakje(buit);
             getVakjeOpPositie(eigenPocketNumber).leegVakje();
             getVakjeOpPositie(buurPocketNumber).leegVakje();
         }
