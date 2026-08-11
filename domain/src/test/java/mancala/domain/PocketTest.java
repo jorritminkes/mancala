@@ -31,12 +31,12 @@ public class PocketTest {
     }
 
     @Test
-    public void TestPocketInstanceExists() {
+    public void TestPocketBestaatNaInitialisatie() {
         assertNotNull(eersteVakje, "Pocket should not be null");
     }
 
     @Test
-    public void TestPocketHasFourBalls() {
+    public void TestNieuwePocketHeeftVierStenen() {
         int aantalStenen = eersteVakje.getAantalStenen();
         assertEquals(4, aantalStenen);
     }
@@ -107,20 +107,20 @@ public class PocketTest {
     }
 
     @Test
-    public void TestPocketNumberZevenIsMancala() {
+    public void TestPocketZevenIsMancala() {
         Vakje vakjeZeven = eersteVakje.getVakjeOpPositie(7);
         assertInstanceOf(Mancala.class, vakjeZeven);
     }
 
     @Test
-    public void TestPocketNummerVeertienIsMancala() {
+    public void TestPocketVeertienIsMancala() {
         Vakje vakjeVeertien = eersteVakje.getVakjeOpPositie(14);
         assertInstanceOf(Mancala.class, vakjeVeertien);
     }
 
     @ParameterizedTest
     @ValueSource(ints = {1,2,3,4,5,6})
-    public void TestPocketsOneToSixHaveOwnerOne(int pocketNumber) {
+    public void TestPocketsEenTotZesZijnVanSpelerEen(int pocketNumber) {
         Vakje vakje = eersteVakje.getVakjeOpPositie(pocketNumber);
         int ownerVakje = vakje.getOwner();
         assertEquals(1, ownerVakje);
@@ -128,7 +128,7 @@ public class PocketTest {
 
     @ParameterizedTest
     @ValueSource(ints = {8,9,10,11,12,13})
-    public void TestPocketsEightToThirteenHaveOwnerTwo(int pocketNumber) {
+    public void TestPocketsAchtTotDertienZijnVanSpelerTwee(int pocketNumber) {
         Vakje vakje = eersteVakje.getVakjeOpPositie(pocketNumber);
         int ownerVakje = vakje.getOwner();
         assertEquals(2, ownerVakje);
@@ -160,7 +160,7 @@ public class PocketTest {
     }
 
     @Test
-    public void TestZetMisluktBijAndersPocket() {
+    public void TestZetMisluktBijPocketVanTegenstander() {
         Vakje vakje12 = eersteVakje.getVakjeOpPositie(12);
         assertThrows(IllegalArgumentException.class, () -> {
             ((Pocket) vakje12).zet();
@@ -175,14 +175,14 @@ public class PocketTest {
     }
 
     @Test
-    public void TestBlijftBeurtBijEindigenOpMancalaGelijk() {
+    public void TestBeurtBlijftGelijkBijEindigenInEigenMancala() {
         Vakje vakje3 = eersteVakje.getVakjeOpPositie(3);
         ((Pocket) vakje3).zet();
         assertEquals(1, vakje3.getBeurt());
     }
 
     @Test
-    public void TestlandenOpLegeEigenPocketMancala() {
+    public void TestLandenOpLegeEigenPocketMancala() {
         Vakje vakje1 = eersteVakje.getVakjeOpPositie(1);
         Vakje vakje5 = eersteVakje.getVakjeOpPositie(5);
         Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
@@ -192,7 +192,7 @@ public class PocketTest {
     }
 
     @Test
-    public void TestlandenOpLegeEigenPocketPocket6leeg() {
+    public void TestLandenOpLegeEigenPocketPocket6leeg() {
         Vakje vakje1 = eersteVakje.getVakjeOpPositie(1);
         Vakje vakje5 = eersteVakje.getVakjeOpPositie(5);
         vakje5.setAantalStenen(0);
@@ -201,7 +201,7 @@ public class PocketTest {
     }
 
     @Test
-    public void TestlandenOpLegeEigenPocketPocket8leeg() {
+    public void TestLandenOpLegeEigenPocketPocket8leeg() {
         Vakje vakje1 = eersteVakje.getVakjeOpPositie(1);
         Vakje vakje5 = eersteVakje.getVakjeOpPositie(5);
         Vakje vakje9 = eersteVakje.getVakjeOpPositie(9);
@@ -222,7 +222,7 @@ public class PocketTest {
 
     @ParameterizedTest
     @CsvSource({"1,0", "2,5", "3,5", "4,5", "5,0", "6,5", "7,8", "8,0", "9,0", "10,5", "11,5", "12,5", "13,5", "14,0"})
-    public void TestDrieZettenBordControle(int pocketNumber, int verwachtteStenen) {
+    public void TestNaDrieZettenZijnStenenCorrectVerdeeld(int pocketNumber, int verwachtteStenen) {
         Vakje eersteZetVakje = eersteVakje.getVakjeOpPositie(5);
         Vakje tweedeZetVakje = eersteVakje.getVakjeOpPositie(8);
         Vakje derdeZetVakje = eersteVakje.getVakjeOpPositie(1);
@@ -235,7 +235,7 @@ public class PocketTest {
 
     @ParameterizedTest
     @CsvSource({"1,4", "2,4", "3,4", "4,4", "5,0", "6,5", "7,1", "8,0", "9,6", "10,1", "11,6", "12,6", "13,6", "14,1"})
-    public void TestDrieZettenBeurtSwitchControle(int pocketNumber, int verwachtteStenen) {
+    public void TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int pocketNumber, int verwachtteStenen) {
         Vakje eersteZetVakje = eersteVakje.getVakjeOpPositie(5);
         Vakje tweedeZetVakje = eersteVakje.getVakjeOpPositie(10);
         Vakje derdeZetVakje = eersteVakje.getVakjeOpPositie(8);
@@ -334,7 +334,7 @@ public class PocketTest {
     }
 
     @Test
-    public void TestZelfGelegdeSteenBijBuurmanVeroveren() {
+    public void TestVeroverenMisluktAlsTegenoverliggendePocketLeegIs() {
         Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
         Vakje vakjeBuurman = eersteVakje.getVakjeOpPositie(Vakje.totaalVakjes - 6);
         vakjeBuurman.setAantalStenen(0);
@@ -344,7 +344,7 @@ public class PocketTest {
     }
 
     @Test
-    public void TestZelfGelegdeSteenViaBuurmanVeroveren() {
+    public void TestSteenGegooidInLegePocketMisluktVerovering() {
         Vakje vakje6 = eersteVakje.getVakjeOpPositie(6);
         Vakje vakjeBuurman = eersteVakje.getVakjeOpPositie(Vakje.totaalVakjes - 6);
         vakjeBuurman.setAantalStenen(0);
