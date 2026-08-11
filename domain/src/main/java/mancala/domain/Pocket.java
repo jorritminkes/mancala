@@ -10,7 +10,7 @@ public class Pocket extends Vakje {
     public Pocket(int beginSpeler) {
         this(null, 1, 1, new Beurt(beginSpeler));
     }
-    
+
 
     Pocket(Vakje eerste, int pocketNumber, int owner, Beurt beurt) {
         super(pocketNumber, eerste, beurt);

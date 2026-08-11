@@ -5,7 +5,6 @@ class Beurt {
     private int beurt;
 
     public Beurt() {
-//        beurt = 1;
         this.beurt = ThreadLocalRandom.current().nextInt(1, 3);
     }
 
