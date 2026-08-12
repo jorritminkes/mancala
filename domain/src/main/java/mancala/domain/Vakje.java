@@ -90,10 +90,26 @@ public abstract class Vakje {
 
     private boolean zijnPocketsLeegVanSpeler(int speler) {
         int startPositie = (speler == 1) ? 1 : vakjesPerKant + 1;
-        int totaalStenen = getVakjeOpPositie(startPositie).telStenenInPockets();
+        int totaalStenen = getVakjeOpPositie(startPositie).telCollectieveStenenInPockets();
         return totaalStenen == 0;
     }
 
-    abstract int telStenenInPockets();
+    abstract int telCollectieveStenenInPockets();
+
+    abstract void verzamelStenenNaarMancala(int stenenTeVerzamelen);
+
+
+    public int getWinnaar() {
+        int stenenSpelerEen = getVakjeOpPositie(vakjesPerKant).getAantalStenen();
+        int stenenSpelerTwee = getVakjeOpPositie(totaalVakjes).getAantalStenen();
+
+        if (stenenSpelerEen > stenenSpelerTwee) {
+            return 1;
+        }
+        if (stenenSpelerTwee > stenenSpelerEen) {
+            return 2;
+        }
+        return 0;
+    }
 
 }

@@ -377,4 +377,49 @@ public class PocketTest {
 
         assertEquals(5, eigenMancala.getAantalStenen());
     }
+
+    @Test
+    public void TestLeegtSpelCorrectNaarDeMancalaBijEindeSpeler1() {
+        int[] testOpstelling = {1,0,0,0,0,0,  0,  4,4,4,4,27,4,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+
+        Vakje pocket1 = eersteVakje.getVakjeOpPositie(1);
+        Vakje mancala1 = eersteVakje.getVakjeOpPositie(7);
+
+        ((Pocket) pocket1).zet();
+
+        assertEquals(28, mancala1.getAantalStenen());
+    }
+
+    @Test
+    public void TestLeegtSpelCorrectNaarDeMancalaBijEindeSpeler2() {
+        int[] testOpstelling = {1,0,0,0,0,0,  0,  4,4,4,4,27,4,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+
+        Vakje pocket1 = eersteVakje.getVakjeOpPositie(1);
+        Vakje mancala2 = eersteVakje.getVakjeOpPositie(14);
+
+        ((Pocket) pocket1).zet();
+
+        assertEquals(20, mancala2.getAantalStenen());
+    }
+
+    @Test
+    public void TestWintSpelerEenHetKortsteSpel() {
+        speelKortsteSpel();
+        assertEquals(1, eersteVakje.getWinnaar());
+    }
+
+    @Test
+    public void TestWintSpelerTweeGegevenSpel() {
+        int[] testOpstelling = {1,0,0,0,0,0,  0,  4,12,4,4,19,4,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+        Vakje pocket1 = eersteVakje.getVakjeOpPositie(1);
+
+        ((Pocket) pocket1).zet();
+
+        assertEquals(2, eersteVakje.getWinnaar());
+    }
+
+
 }

@@ -35,8 +35,6 @@ public class Pocket extends Vakje {
             throw new IllegalArgumentException("Kan niet op een leeg vakje spelen");
         }
 
-//        stenenDoorgeven();
-
         if (behoortPocketBijBeurt(getBeurt())) {
             leegVakjeEnGeefStenenDoor();
         } else {
@@ -75,28 +73,31 @@ public class Pocket extends Vakje {
 
     private void leegAllePocketsAlsSpelKlaarIs() {
         if (isSpelAfgelopen()) {
-            leegPocketsNaarMancala(getMancalaPositie(1));
-            leegPocketsNaarMancala(getMancalaPositie(2));
+            verzamelStenenVanSpeler(1);
+            verzamelStenenVanSpeler(2);
         }
     }
 
-    private void leegPocketsNaarMancala(int mancalaPositie) {
-        Vakje mancala = getVakjeOpPositie(mancalaPositie);
-        int startPositie = mancalaPositie - pocketsPerKant;
-        int eindPositie = mancalaPositie - 1;
-        for (int positie = startPositie; positie <= eindPositie; ++positie) {
-            Vakje pocket = getVakjeOpPositie(positie);
-            mancala.voegAantalStenenToeAanVakje(pocket.getAantalStenen());
-            pocket.leegVakje();
-        }
+    private void verzamelStenenVanSpeler(int speler) {
+        int startPositie = (speler == 1) ? 1 : vakjesPerKant + 1;
+        getVakjeOpPositie(startPositie).verzamelStenenNaarMancala(0);
     }
+
+    @Override
+    void verzamelStenenNaarMancala(int stenenTeVerzamelen) {
+        int stenenOmDoorTeGeven = stenenTeVerzamelen + getAantalStenen();
+        leegVakje();
+        getVolgendVakje().verzamelStenenNaarMancala(stenenOmDoorTeGeven);
+    }
+
+
 
     private void beeindigZet(int beurt) {
-        veroverOpLeegVakje(beurt);
+        veroverIndienGelandOpLeegVakje(beurt);
         switchBeurt();
     }
 
-    private void veroverOpLeegVakje(int huidigeSpeler) {
+    private void veroverIndienGelandOpLeegVakje(int huidigeSpeler) {
         if (getAantalStenen()==1) {
             landenOpLegeEigenPocket(huidigeSpeler);
         }
@@ -132,8 +133,8 @@ public class Pocket extends Vakje {
     }
 
     @Override
-    int telStenenInPockets() {
-        return getAantalStenen() + getVolgendVakje().telStenenInPockets();
+    int telCollectieveStenenInPockets() {
+        return getAantalStenen() + getVolgendVakje().telCollectieveStenenInPockets();
     }
 
 

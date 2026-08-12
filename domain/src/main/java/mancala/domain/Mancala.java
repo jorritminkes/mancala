@@ -32,8 +32,15 @@ public class Mancala extends Vakje {
     }
 
     @Override
-    int telStenenInPockets() {
+    int telCollectieveStenenInPockets() {
         return 0;
     }
+
+    @Override
+    void verzamelStenenNaarMancala(int stenenTeVerzamelen) {
+        voegAantalStenenToeAanVakje(stenenTeVerzamelen);
+    }
+
+
 
 }
