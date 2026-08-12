@@ -122,7 +122,7 @@ public class PocketTest {
     @ValueSource(ints = {1,2,3,4,5,6})
     public void TestPocketsEenTotZesZijnVanSpelerEen(int pocketNumber) {
         Vakje vakje = eersteVakje.getVakjeOpPositie(pocketNumber);
-        int ownerVakje = vakje.getOwner();
+        int ownerVakje = vakje.getEigenaar().getSpelerNummer();
         assertEquals(1, ownerVakje);
     }
 
@@ -130,7 +130,7 @@ public class PocketTest {
     @ValueSource(ints = {8,9,10,11,12,13})
     public void TestPocketsAchtTotDertienZijnVanSpelerTwee(int pocketNumber) {
         Vakje vakje = eersteVakje.getVakjeOpPositie(pocketNumber);
-        int ownerVakje = vakje.getOwner();
+        int ownerVakje = vakje.getEigenaar().getSpelerNummer();
         assertEquals(2, ownerVakje);
     }
 
@@ -173,14 +173,16 @@ public class PocketTest {
     public void TestVerandertBeurtBijEindigenOpPocket() {
         Vakje vakje1 = eersteVakje.getVakjeOpPositie(1);
         ((Pocket) vakje1).zet();
-        assertEquals(2, vakje1.getBeurt());
+        Speler speler1 = vakje1.getEigenaar();
+        assertFalse(speler1.isAanZet());
     }
 
     @Test
     public void TestBeurtBlijftGelijkBijEindigenInEigenMancala() {
         Vakje vakje3 = eersteVakje.getVakjeOpPositie(3);
         ((Pocket) vakje3).zet();
-        assertEquals(1, vakje3.getBeurt());
+        Speler speler1 = vakje3.getEigenaar();
+        assertTrue(speler1.isAanZet());
     }
 
     @Test

@@ -14,19 +14,20 @@ public class SpelerTest {
     @Test
     public void TestSpelerEenIsAanZetBijBeginspelerEen() {
         Speler speler1 = new Speler(1);
-        assertEquals(1, speler1.getSpelerAanZet());
+        assertTrue(speler1.isAanZet());
     }
 
     @Test
     public void TestSpelerTweeIsAanZetBijBeginspelerTwee() {
-        Speler speler2 = new Speler(2);
-        assertEquals(2, speler2.getSpelerAanZet());
+        Speler speler1 = new Speler(2);
+        Speler speler2 = speler1.getTegenstander();
+        assertTrue(speler2.isAanZet());
     }
 
     @Test
     public void TestSpelerEenIsAanZetBijGeenBeginspelerOpgeven() {
         Speler speler1 = new Speler();
-        assertEquals(1, speler1.getSpelerAanZet());
+        assertTrue(speler1.isAanZet());
     }
 
     @Test
@@ -34,7 +35,7 @@ public class SpelerTest {
         Speler speler = new Speler(1);
         speler.switchBeurt();
         speler.switchBeurt();
-        assertEquals(1, speler.getSpelerAanZet());
+        assertTrue(speler.isAanZet());
     }
 
 }

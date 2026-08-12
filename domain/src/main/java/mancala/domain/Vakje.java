@@ -3,20 +3,19 @@ package mancala.domain;
 public abstract class Vakje {
     private final int pocketNumber;
     private int aantalStenen;
-    private int owner;
+    private Speler eigenaar;
     private final Vakje eersteVakje;
     private Vakje volgendVakje;
-    private Speler speler;
 
     static final int pocketsPerKant = 6;
     static final int vakjesPerKant = pocketsPerKant + 1;
     static final int totaalVakjes = 2 * vakjesPerKant;
 
 
-    Vakje(int pocketNumber, int aantalStenen, Vakje eerste, Speler speler) {
+    Vakje(int pocketNumber, int aantalStenen, Vakje eerste, Speler eigenaar) {
         this.pocketNumber = pocketNumber;
         this.aantalStenen = aantalStenen;
-        this.speler = speler;
+        this.eigenaar = eigenaar;
         this.eersteVakje = (eerste != null) ? eerste : this;
     }
 
@@ -27,12 +26,8 @@ public abstract class Vakje {
         return pocketNumber;
     }
 
-    int getOwner() {
-        return owner;
-    }
-
-    void setOwner(int owner) {
-        this.owner = owner;
+    Speler getEigenaar() {
+        return eigenaar;
     }
 
 
@@ -76,12 +71,8 @@ public abstract class Vakje {
         return volgendVakje.getVakjeOpPositieRecursief(positie - 1);
     }
 
-    int getBeurt() {
-        return speler.getSpelerAanZet();
-    }
-
     void switchBeurt() {
-        speler.switchBeurt();
+        eigenaar.switchBeurt();
     }
 
 

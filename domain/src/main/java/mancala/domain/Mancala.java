@@ -2,15 +2,14 @@ package mancala.domain;
 
 public class Mancala extends Vakje {
 
-    Mancala(Vakje eerste, int pocketNumber, int owner, Speler speler, int[] opstelling) {
-        super(pocketNumber, opstelling[pocketNumber - 1], eerste, speler);
-        setOwner(owner);
+    Mancala(Vakje eerste, int pocketNumber, Speler eigenaar, int[] opstelling) {
+        super(pocketNumber, opstelling[pocketNumber - 1], eerste, eigenaar);
 
         int volgendNummer = pocketNumber + 1;
 
         if (pocketNumber < totaalVakjes) {
-            int volgendOwner = (owner == 1) ? 2 : 1;
-            setVolgendVakje(new Pocket(this.getEersteVakje(), volgendNummer, volgendOwner, speler, opstelling));
+            Speler volgendOwner = eigenaar.getTegenstander();
+            setVolgendVakje(new Pocket(this.getEersteVakje(), volgendNummer, volgendOwner, opstelling));
         } else {
             setVolgendVakje(getEersteVakje());
         }
@@ -18,10 +17,9 @@ public class Mancala extends Vakje {
 
     @Override
     void ontvangStenen(int ontvangenStenen) {
-        int huidigeSpeler = getBeurt();
         int stenenOmDoorTeGeven = ontvangenStenen;
 
-        if (getOwner() == huidigeSpeler) {
+        if (getEigenaar().isAanZet()) {
             voegAantalStenenToeAanVakje(1);
             stenenOmDoorTeGeven = ontvangenStenen - 1;
         }

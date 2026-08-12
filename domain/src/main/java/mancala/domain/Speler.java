@@ -25,12 +25,16 @@ public class Speler {
         return spelerNummer;
     }
 
+    public boolean isAanZet() {
+        return aanZet;
+    }
+
+    public Speler getTegenstander() {
+        return tegenstander;
+    }
+
     void switchBeurt() {
         this.aanZet = !this.aanZet;
         tegenstander.aanZet = !tegenstander.aanZet;
-    }
-
-    int getSpelerAanZet() {
-        return aanZet? spelerNummer : tegenstander.getSpelerNummer();
     }
 }
