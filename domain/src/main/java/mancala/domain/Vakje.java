@@ -6,17 +6,20 @@ public abstract class Vakje {
     private int owner;
     private final Vakje eersteVakje;
     private Vakje volgendVakje;
-    private Beurt beurt;
+//    private Beurt beurt;
+    private Speler speler;
 
     static final int pocketsPerKant = 6;
     static final int vakjesPerKant = pocketsPerKant + 1;
     static final int totaalVakjes = 2 * vakjesPerKant;
 
 
-    Vakje(int pocketNumber, int aantalStenen, Vakje eerste, Beurt beurt) {
+//    Vakje(int pocketNumber, int aantalStenen, Vakje eerste, Beurt beurt) {
+    Vakje(int pocketNumber, int aantalStenen, Vakje eerste, Speler speler) {
         this.pocketNumber = pocketNumber;
         this.aantalStenen = aantalStenen;
-        this.beurt = beurt;
+//        this.beurt = beurt;
+        this.speler = speler;
         this.eersteVakje = (eerste != null) ? eerste : this;
     }
 
@@ -77,11 +80,19 @@ public abstract class Vakje {
     }
 
 
+//    int getBeurt() {
+//        return beurt.getBeurt();
+//    }
+//
+//    void switchBeurt() { beurt.switchBeurt();}
+
     int getBeurt() {
-        return beurt.getBeurt();
+        return speler.getSpelerAanZet();
     }
 
-    void switchBeurt() { beurt.switchBeurt();}
+    void switchBeurt() {
+        speler.switchBeurt();
+    }
 
 
     public boolean isSpelAfgelopen() {
