@@ -4,17 +4,6 @@ package mancala.domain;
 public class Pocket extends Vakje {
     private static final int[] standaardOpstelling = {4,4,4,4,4,4,0,4,4,4,4,4,4,0};
 
-//    public Pocket() {
-//        this(null, 1, 1, new Beurt(), standaardOpstelling);
-//    }
-//
-//    public Pocket(int beginSpeler) {
-//        this(null, 1, 1, new Beurt(beginSpeler), standaardOpstelling);
-//    }
-//
-//    public Pocket(int beginSpeler, int[] testOpstelling) {
-//        this(null, 1, 1, new Beurt(beginSpeler), testOpstelling);
-//    }
 
     public Pocket() {
         this(null, 1, 1, new Speler(), standaardOpstelling);
@@ -29,19 +18,6 @@ public class Pocket extends Vakje {
     }
 
 
-//    Pocket(Vakje eerste, int pocketNumber, int owner, Beurt beurt, int[] opstelling) {
-//        super(pocketNumber, opstelling[pocketNumber - 1], eerste, beurt);
-//        setOwner(owner);
-//
-//        int volgendNummer = pocketNumber + 1;
-//
-//        if (volgendNummer % vakjesPerKant == 0) {
-//            setVolgendVakje(new Mancala(getEersteVakje(), volgendNummer, owner, beurt, opstelling));
-//        } else {
-//            setVolgendVakje(new Pocket(getEersteVakje(), volgendNummer, owner, beurt, opstelling));
-//        }
-//    }
-
     Pocket(Vakje eerste, int pocketNumber, int owner, Speler speler, int[] opstelling) {
         super(pocketNumber, opstelling[pocketNumber - 1], eerste, speler);
         setOwner(owner);
@@ -54,6 +30,7 @@ public class Pocket extends Vakje {
             setVolgendVakje(new Pocket(getEersteVakje(), volgendNummer, owner, speler, opstelling));
         }
     }
+
 
     public void zet() {
         if (getAantalStenen() == 0) {
