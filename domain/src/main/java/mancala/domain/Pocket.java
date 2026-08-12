@@ -3,8 +3,7 @@ package mancala.domain;
 
 public class Pocket extends Vakje {
     private static final int[] standaardOpstelling = {4,4,4,4,4,4,0,4,4,4,4,4,4,0};
-
-
+    
     public Pocket() {
         this(null, 1, 1, new Speler(), standaardOpstelling);
     }
