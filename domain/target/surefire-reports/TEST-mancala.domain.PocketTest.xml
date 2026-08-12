@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="mancala.domain.PocketTest" time="0.306" tests="85" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="mancala.domain.PocketTest" time="0.348" tests="121" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="25"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -12,7 +12,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="US"/>
     <property name="sun.boot.library.path" value="/home/jorrit/.sdkman/candidates/java/25-open/lib"/>
-    <property name="sun.java.command" value="/home/jorrit/Documents/4-object-orientation-and-tdd/mancala/domain/target/surefire/surefirebooter-20260731123630517_3.jar /home/jorrit/Documents/4-object-orientation-and-tdd/mancala/domain/target/surefire 2026-07-31T12-36-30_435-jvmRun1 surefire-20260731123630517_1tmp surefire_0-20260731123630517_2tmp"/>
+    <property name="sun.java.command" value="/home/jorrit/Documents/4-object-orientation-and-tdd/mancala/domain/target/surefire/surefirebooter-20260812120352287_3.jar /home/jorrit/Documents/4-object-orientation-and-tdd/mancala/domain/target/surefire 2026-08-12T12-03-52_181-jvmRun1 surefire-20260812120352287_1tmp surefire_0-20260812120352287_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="/home/jorrit/Documents/4-object-orientation-and-tdd/mancala/domain/target/test-classes:/home/jorrit/Documents/4-object-orientation-and-tdd/mancala/domain/target/classes:/home/jorrit/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.10.0/junit-jupiter-api-5.10.0.jar:/home/jorrit/.m2/repository/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar:/home/jorrit/.m2/repository/org/junit/platform/junit-platform-commons/1.10.0/junit-platform-commons-1.10.0.jar:/home/jorrit/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/jorrit/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.10.0/junit-jupiter-engine-5.10.0.jar:/home/jorrit/.m2/repository/org/junit/platform/junit-platform-engine/1.10.0/junit-platform-engine-1.10.0.jar:/home/jorrit/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.9.2/junit-jupiter-params-5.9.2.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -27,7 +27,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="surefire.real.class.path" value="/home/jorrit/Documents/4-object-orientation-and-tdd/mancala/domain/target/surefire/surefirebooter-20260731123630517_3.jar"/>
+    <property name="surefire.real.class.path" value="/home/jorrit/Documents/4-object-orientation-and-tdd/mancala/domain/target/surefire/surefirebooter-20260812120352287_3.jar"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25+36-3489"/>
     <property name="user.name" value="jorrit"/>
@@ -54,89 +54,125 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="TestZetWordtOvergeslagenBijLeegVakje" classname="mancala.domain.PocketTest" time="0.026"/>
+  <testcase name="TestMancalaBuurmanWordtOvergeslagen" classname="mancala.domain.PocketTest" time="0.003"/>
+  <testcase name="TestLeegtSpelCorrectNaarDeMancalaBijEindeSpeler1" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestLeegtSpelCorrectNaarDeMancalaBijEindeSpeler2" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarMancalaTweeHeeft7Stenen" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestEigenMancalaWordtNietOvergeslagen" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestBeurtBlijftGelijkBijEindigenInEigenMancala" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestZetWordtOvergeslagenBijLeegVakje" classname="mancala.domain.PocketTest" time="0.003"/>
   <testcase name="TestMancalaKrijgtGeenSteenVanAndereSpeler" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketHasFourBalls" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestMancalaKrijgtSteenVanEigenSpeler" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestBlijftBeurtBijEindigenOpMancalaGelijk" classname="mancala.domain.PocketTest" time="0.002"/>
-  <testcase name="TestLeegtEenZetZijnPocket" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[1]" classname="mancala.domain.PocketTest" time="0.023"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[3]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[5]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[6]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[7]" classname="mancala.domain.PocketTest" time="0.002"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[8]" classname="mancala.domain.PocketTest" time="0.002"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[9]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[10]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[11]" classname="mancala.domain.PocketTest" time="0.003"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[12]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[13]" classname="mancala.domain.PocketTest" time="0.002"/>
-  <testcase name="TestDrieZettenBordControle(int, int)[14]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketNummerVeertienIsMancala" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestHebbenAllePocketsVierStenen(int)[1]" classname="mancala.domain.PocketTest" time="0.003"/>
+  <testcase name="TestBlijftMancalaGelijkNaVeroverenMetLegeOverkant" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestMancalaKrijgtSteenVanEigenSpeler" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestNaPotKlaarMancalaEenHeeft41Stenen" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestLeegtEenZetZijnPocket" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestLandenOpLegeEigenPocketPocket6leeg" classname="mancala.domain.PocketTest" time="0.002"/>
+  <testcase name="TestLandenOpLegeEigenPocketPocket8leeg" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestZetMisluktBijPocketVanTegenstander" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestHebbenAllePocketsVierStenen(int)[1]" classname="mancala.domain.PocketTest" time="0.025"/>
   <testcase name="TestHebbenAllePocketsVierStenen(int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestHebbenAllePocketsVierStenen(int)[3]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestHebbenAllePocketsVierStenen(int)[3]" classname="mancala.domain.PocketTest" time="0.002"/>
   <testcase name="TestHebbenAllePocketsVierStenen(int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
   <testcase name="TestHebbenAllePocketsVierStenen(int)[5]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketInstanceExists" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarIsElkePocketLeeg(int)[1]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarIsElkePocketLeeg(int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarIsElkePocketLeeg(int)[3]" classname="mancala.domain.PocketTest" time="0.002"/>
+  <testcase name="TestNaPotKlaarIsElkePocketLeeg(int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarIsElkePocketLeeg(int)[5]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarIsElkePocketLeeg(int)[6]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarIsElkePocketLeeg(int)[7]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarIsElkePocketLeeg(int)[8]" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestNaPotKlaarIsElkePocketLeeg(int)[9]" classname="mancala.domain.PocketTest" time="0.002"/>
+  <testcase name="TestNaPotKlaarIsElkePocketLeeg(int)[10]" classname="mancala.domain.PocketTest" time="0.002"/>
+  <testcase name="TestNaPotKlaarIsElkePocketLeeg(int)[11]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarIsElkePocketLeeg(int)[12]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestSteenGegooidInLegePocketMisluktVerovering" classname="mancala.domain.PocketTest" time="0.001"/>
   <testcase name="TestLandenOpTegenstanderLeegVakVoegtNietToeAanMancala" classname="mancala.domain.PocketTest" time="0.001"/>
   <testcase name="TestZetLuktBijEigenPocket" classname="mancala.domain.PocketTest" time="0.002"/>
   <testcase name="TestSpelNogNietKlaar" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestAlleSteentjesWordenDoorgegevenBijZetZonderMancala(int, int)[1]" classname="mancala.domain.PocketTest" time="0.003"/>
+  <testcase name="TestAlleSteentjesWordenDoorgegevenBijZetZonderMancala(int, int)[1]" classname="mancala.domain.PocketTest" time="0.004"/>
   <testcase name="TestAlleSteentjesWordenDoorgegevenBijZetZonderMancala(int, int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
   <testcase name="TestAlleSteentjesWordenDoorgegevenBijZetZonderMancala(int, int)[3]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestAlleSteentjesWordenDoorgegevenBijZetZonderMancala(int, int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestZetMisluktBijAndersPocket" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestSpelKlaar" classname="mancala.domain.PocketTest" time="0.0"/>
-  <testcase name="spelerEenWint" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestAlleSteentjesWordenDoorgegevenBijZetZonderMancala(int, int)[4]" classname="mancala.domain.PocketTest" time="0.003"/>
+  <testcase name="TestPocketsAchtTotDertienZijnVanSpelerTwee(int)[1]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestPocketsAchtTotDertienZijnVanSpelerTwee(int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestPocketsAchtTotDertienZijnVanSpelerTwee(int)[3]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestPocketsAchtTotDertienZijnVanSpelerTwee(int)[4]" classname="mancala.domain.PocketTest" time="0.004"/>
+  <testcase name="TestPocketsAchtTotDertienZijnVanSpelerTwee(int)[5]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestPocketsAchtTotDertienZijnVanSpelerTwee(int)[6]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestWintSpelerEenHetKortsteSpel" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestSpelKlaar" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[1]" classname="mancala.domain.PocketTest" time="0.003"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[3]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[5]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[6]" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[7]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[8]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[9]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[10]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[11]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[12]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[13]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenIsBeurtBijDeJuisteSpeler(int, int)[14]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestPocketsEenTotZesZijnVanSpelerEen(int)[1]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestPocketsEenTotZesZijnVanSpelerEen(int)[2]" classname="mancala.domain.PocketTest" time="0.002"/>
+  <testcase name="TestPocketsEenTotZesZijnVanSpelerEen(int)[3]" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestPocketsEenTotZesZijnVanSpelerEen(int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestPocketsEenTotZesZijnVanSpelerEen(int)[5]" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestPocketsEenTotZesZijnVanSpelerEen(int)[6]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNieuwePocketHeeftVierStenen" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestWintSpelerTweeGegevenSpel" classname="mancala.domain.PocketTest" time="0.0"/>
   <testcase name="TestVerandertBeurtBijEindigenOpPocket" classname="mancala.domain.PocketTest" time="0.0"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[1]" classname="mancala.domain.PocketTest" time="0.003"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[3]" classname="mancala.domain.PocketTest" time="0.0"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[5]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[6]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[7]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[8]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[9]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[10]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[11]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[12]" classname="mancala.domain.PocketTest" time="0.0"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[13]" classname="mancala.domain.PocketTest" time="0.002"/>
-  <testcase name="TestDrieZettenBeurtSwitchControle(int, int)[14]" classname="mancala.domain.PocketTest" time="0.001"/>
   <testcase name="TestSpelerTweeKlaarNaKortsteSpel(int)[1]" classname="mancala.domain.PocketTest" time="0.001"/>
   <testcase name="TestSpelerTweeKlaarNaKortsteSpel(int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
   <testcase name="TestSpelerTweeKlaarNaKortsteSpel(int)[3]" classname="mancala.domain.PocketTest" time="0.0"/>
   <testcase name="TestSpelerTweeKlaarNaKortsteSpel(int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
   <testcase name="TestSpelerTweeKlaarNaKortsteSpel(int)[5]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestSpelerTweeKlaarNaKortsteSpel(int)[6]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketVeertienBestaat" classname="mancala.domain.PocketTest" time="0.004"/>
-  <testcase name="TestPocketsEightToThirteenHaveOwnerTwo(int)[1]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketsEightToThirteenHaveOwnerTwo(int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketsEightToThirteenHaveOwnerTwo(int)[3]" classname="mancala.domain.PocketTest" time="0.0"/>
-  <testcase name="TestPocketsEightToThirteenHaveOwnerTwo(int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketsEightToThirteenHaveOwnerTwo(int)[5]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketsEightToThirteenHaveOwnerTwo(int)[6]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestSpelerTweeKlaarNaKortsteSpel(int)[6]" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestLandenOpLegeEigenPocketMancala" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestPocketVeertienIsMancala" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestPocketVeertienBestaat" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarHebbenMancalasAlleStenen" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestZetOpMancalaWerktNiet" classname="mancala.domain.PocketTest" time="0.001"/>
   <testcase name="TestVolgendePocketKrijgtEenSteenBijZet" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketsOneToSixHaveOwnerOne(int)[1]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketsOneToSixHaveOwnerOne(int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketsOneToSixHaveOwnerOne(int)[3]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketsOneToSixHaveOwnerOne(int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketsOneToSixHaveOwnerOne(int)[5]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketsOneToSixHaveOwnerOne(int)[6]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestlandenOpLegeEigenPocketMancala" classname="mancala.domain.PocketTest" time="0.001"/>
   <testcase name="TestPocketNumberKloptMetPositie(int, int)[1]" classname="mancala.domain.PocketTest" time="0.001"/>
   <testcase name="TestPocketNumberKloptMetPositie(int, int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
   <testcase name="TestPocketNumberKloptMetPositie(int, int)[3]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketNumberKloptMetPositie(int, int)[4]" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestPocketNumberKloptMetPositie(int, int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
   <testcase name="TestPocketNumberKloptMetPositie(int, int)[5]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketNumberZevenIsMancala" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestVeroverenMisluktAlsTegenoverliggendePocketLeegIs" classname="mancala.domain.PocketTest" time="0.0"/>
   <testcase name="TestPocketNumberVanVolgendePocketMatcht(int, int)[1]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestPocketNumberVanVolgendePocketMatcht(int, int)[2]" classname="mancala.domain.PocketTest" time="0.0"/>
-  <testcase name="TestPocketNumberVanVolgendePocketMatcht(int, int)[3]" classname="mancala.domain.PocketTest" time="0.0"/>
-  <testcase name="TestPocketNumberVanVolgendePocketMatcht(int, int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestlandenOpLegeEigenPocketPocket6leeg" classname="mancala.domain.PocketTest" time="0.001"/>
-  <testcase name="TestlandenOpLegeEigenPocketPocket8leeg" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestPocketNumberVanVolgendePocketMatcht(int, int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestPocketNumberVanVolgendePocketMatcht(int, int)[3]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestPocketNumberVanVolgendePocketMatcht(int, int)[4]" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestPocketZevenIsMancala" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[1]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[3]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[5]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[6]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[7]" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[8]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[9]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[10]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[11]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[12]" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[13]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaDrieZettenZijnStenenCorrectVerdeeld(int, int)[14]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestPocketBestaatNaInitialisatie" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestNaPotKlaarGeenZetMogelijk(int)[1]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarGeenZetMogelijk(int)[2]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarGeenZetMogelijk(int)[3]" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestNaPotKlaarGeenZetMogelijk(int)[4]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarGeenZetMogelijk(int)[5]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarGeenZetMogelijk(int)[6]" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestNaPotKlaarGeenZetMogelijk(int)[7]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarGeenZetMogelijk(int)[8]" classname="mancala.domain.PocketTest" time="0.0"/>
+  <testcase name="TestNaPotKlaarGeenZetMogelijk(int)[9]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarGeenZetMogelijk(int)[10]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarGeenZetMogelijk(int)[11]" classname="mancala.domain.PocketTest" time="0.001"/>
+  <testcase name="TestNaPotKlaarGeenZetMogelijk(int)[12]" classname="mancala.domain.PocketTest" time="0.001"/>
 </testsuite>
