@@ -101,19 +101,25 @@ public abstract class Vakje {
 
 
     public Speler getWinnaar() {
+        if (!isSpelAfgelopen()) {
+            return null; //misschien niet null. Misschien optional
+        }
+
         Speler speler1 = eersteVakje.getEigenaar();
         Speler speler2 = speler1.getTegenstander();
 
         int stenenSpelerEen = getVakjeOpPositie(getMancalaPositie(speler1)).getAantalStenen();
         int stenenSpelerTwee = getVakjeOpPositie(getMancalaPositie(speler2)).getAantalStenen();
 
+        //enum voor winnaar en moet alleen aangevraagd worden of reactie gegeven worden if isSpelAfgelopen
+        // Optional<speler> gebruiken
         if (stenenSpelerEen > stenenSpelerTwee) {
             return speler1;
         }
         if (stenenSpelerTwee > stenenSpelerEen) {
             return speler2;
         }
-        return null;
+        return null; // dit is eng
     }
 
 }

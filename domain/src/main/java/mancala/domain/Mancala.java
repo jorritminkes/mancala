@@ -33,6 +33,7 @@ public class Mancala extends Vakje {
     int telCollectieveStenenInPockets() {
         return 0;
     }
+    // kan ook gewoon een functie maken die false geeft als in 1 van de 6 pockets een steen zit ipv stenen optellen
 
     @Override
     void verzamelStenenNaarMancala(int stenenTeVerzamelen) {

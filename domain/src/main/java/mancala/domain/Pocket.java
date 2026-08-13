@@ -12,7 +12,7 @@ public class Pocket extends Vakje {
         this(null, 1, new Speler(beginSpeler), standaardOpstelling);
     }
 
-    public Pocket(int beginSpeler, int[] testOpstelling) {
+    Pocket(int beginSpeler, int[] testOpstelling) {
         this(null, 1, new Speler(beginSpeler), testOpstelling);
     }
 
@@ -105,6 +105,10 @@ public class Pocket extends Vakje {
             int eigenPocketNumber = this.getPocketNumber();
             int buurPocketNumber = getPocketNumberNeighbor(getPocketNumber());
             int buit = berekenBuitLeegVakje(buurPocketNumber, eigenPocketNumber);
+
+            //zet hier die if statement in nberekenBuitLeegVakje
+
+            // als de buurman nul heeft dan verdwijnt er een steentje
 
             getVakjeOpPositie(getMancalaPositie(getEigenaar())).voegAantalStenenToeAanVakje(buit);
             leegVakje();

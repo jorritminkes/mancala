@@ -15,13 +15,13 @@ public class Speler {
         this.tegenstander = new Speler(2, beginSpeler, this);
     }
 
-    Speler(int spelerNummer, int beginSpeler, Speler tegenstander) {
+    private Speler(int spelerNummer, int beginSpeler, Speler tegenstander) {
         this.spelerNummer = spelerNummer;
         this.aanZet = (beginSpeler == spelerNummer);
         this.tegenstander = tegenstander;
     }
 
-    public int getSpelerNummer() {
+    int getSpelerNummer() {
         return spelerNummer;
     }
 
@@ -29,7 +29,7 @@ public class Speler {
         return aanZet;
     }
 
-    public Speler getTegenstander() {
+    Speler getTegenstander() {
         return tegenstander;
     }
 
