@@ -75,15 +75,24 @@ public abstract class Vakje {
         eigenaar.switchBeurt();
     }
 
-
-    public boolean isSpelAfgelopen() {
-        return zijnPocketsLeegVanSpeler(1) || zijnPocketsLeegVanSpeler(2);
+    int getStartPositie(Speler speler) {
+        return (speler == eersteVakje.getEigenaar()) ? 1 : vakjesPerKant + 1;
     }
 
-    private boolean zijnPocketsLeegVanSpeler(int speler) {
-        int startPositie = (speler == 1) ? 1 : vakjesPerKant + 1;
-        int totaalStenen = getVakjeOpPositie(startPositie).telCollectieveStenenInPockets();
-        return totaalStenen == 0;
+    int getMancalaPositie(Speler speler) {
+        return (speler == eersteVakje.getEigenaar()) ? vakjesPerKant : totaalVakjes;
+    }
+
+
+    public boolean isSpelAfgelopen() {
+        Speler speler1 = eersteVakje.getEigenaar();
+        Speler speler2 = speler1.getTegenstander();
+        return zijnPocketsLeegVanSpeler(speler1) || zijnPocketsLeegVanSpeler(speler2);
+    }
+
+    private boolean zijnPocketsLeegVanSpeler(Speler speler) {
+        int totaalStenen = getVakjeOpPositie(getStartPositie(speler)).telCollectieveStenenInPockets();
+        return (totaalStenen == 0);
     }
 
     abstract int telCollectieveStenenInPockets();
@@ -91,17 +100,20 @@ public abstract class Vakje {
     abstract void verzamelStenenNaarMancala(int stenenTeVerzamelen);
 
 
-    public int getWinnaar() {
-        int stenenSpelerEen = getVakjeOpPositie(vakjesPerKant).getAantalStenen();
-        int stenenSpelerTwee = getVakjeOpPositie(totaalVakjes).getAantalStenen();
+    public Speler getWinnaar() {
+        Speler speler1 = eersteVakje.getEigenaar();
+        Speler speler2 = speler1.getTegenstander();
+
+        int stenenSpelerEen = getVakjeOpPositie(getMancalaPositie(speler1)).getAantalStenen();
+        int stenenSpelerTwee = getVakjeOpPositie(getMancalaPositie(speler2)).getAantalStenen();
 
         if (stenenSpelerEen > stenenSpelerTwee) {
-            return 1;
+            return speler1;
         }
         if (stenenSpelerTwee > stenenSpelerEen) {
-            return 2;
+            return speler2;
         }
-        return 0;
+        return null;
     }
 
 }

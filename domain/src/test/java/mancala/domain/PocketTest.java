@@ -409,7 +409,7 @@ public class PocketTest {
     @Test
     public void TestWintSpelerEenHetKortsteSpel() {
         speelKortsteSpel();
-        assertEquals(1, eersteVakje.getWinnaar());
+        assertEquals(1, eersteVakje.getWinnaar().getSpelerNummer());
     }
 
     @Test
@@ -420,7 +420,7 @@ public class PocketTest {
 
         ((Pocket) pocket1).zet();
 
-        assertEquals(2, eersteVakje.getWinnaar());
+        assertEquals(2, eersteVakje.getWinnaar().getSpelerNummer());
     }
 
 

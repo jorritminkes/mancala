@@ -69,14 +69,16 @@ public class Pocket extends Vakje {
 
     private void leegAllePocketsAlsSpelKlaarIs() {
         if (isSpelAfgelopen()) {
-            verzamelStenenVanSpeler(1);
-            verzamelStenenVanSpeler(2);
+            Speler speler1 = getEersteVakje().getEigenaar();
+            Speler speler2 = speler1.getTegenstander();
+
+            verzamelStenenVanSpeler(speler1);
+            verzamelStenenVanSpeler(speler2);
         }
     }
 
-    private void verzamelStenenVanSpeler(int speler) {
-        int startPositie = (speler == 1) ? 1 : vakjesPerKant + 1;
-        getVakjeOpPositie(startPositie).verzamelStenenNaarMancala(0);
+    private void verzamelStenenVanSpeler(Speler speler) {
+        getVakjeOpPositie(getStartPositie(speler)).verzamelStenenNaarMancala(0);
     }
 
     @Override
@@ -108,10 +110,6 @@ public class Pocket extends Vakje {
             leegVakje();
             getVakjeOpPositie(buurPocketNumber).leegVakje();
         }
-    }
-
-    private static int getMancalaPositie(Speler speler) {
-        return speler.getSpelerNummer() == 1 ? vakjesPerKant : 2 * vakjesPerKant;
     }
 
     private int getPocketNumberNeighbor(int pocketNumber) {
