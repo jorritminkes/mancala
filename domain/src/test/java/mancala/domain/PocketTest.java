@@ -266,13 +266,13 @@ public class PocketTest {
     public void TestSpelNogNietKlaar() {
         Vakje testVakje = eersteVakje.getVakjeOpPositie(1);
         ((Pocket) testVakje).zet();
-        assertFalse(testVakje.isSpelAfgelopen());
+        assertFalse(((Pocket) testVakje).isSpelAfgelopen());
     }
 
     @Test
     public void TestSpelKlaar() {
         speelKortsteSpel();
-        assertTrue(eersteVakje.isSpelAfgelopen());
+        assertTrue(((Pocket) eersteVakje).isSpelAfgelopen());
     }
 
     @ParameterizedTest
@@ -409,7 +409,8 @@ public class PocketTest {
     @Test
     public void TestWintSpelerEenHetKortsteSpel() {
         speelKortsteSpel();
-        assertEquals(1, eersteVakje.getWinnaar().getSpelerNummer());
+
+        assertEquals(1, ((Pocket) eersteVakje).getWinnaar().map(Speler::getSpelerNummer).orElse(-1));
     }
 
     @Test
@@ -420,7 +421,31 @@ public class PocketTest {
 
         ((Pocket) pocket1).zet();
 
-        assertEquals(2, eersteVakje.getWinnaar().getSpelerNummer());
+        assertEquals(2, ((Pocket) eersteVakje).getWinnaar().map(Speler::getSpelerNummer).orElse(-1));
+    }
+
+    @Test
+    public void TestLandOpLegePocketMetLegeBuurmanPocketEigenCheck() {
+        int[] testOpstelling = {1,0,0,0,0,0,  0,  47,0,0,0,0,0,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+        Vakje pocket1 = eersteVakje.getVakjeOpPositie(1);
+        Vakje pocket2 = eersteVakje.getVakjeOpPositie(2);
+
+        ((Pocket) pocket1).zet();
+
+        assertEquals(1, pocket2.getAantalStenen());
+    }
+
+    @Test
+    public void TestLandOpLegePocketMetLegeBuurmanPocketBuurmanCheck() {
+        int[] testOpstelling = {1,0,0,0,0,0,  0,  47,0,0,0,0,0,  0};
+        eersteVakje = new Pocket(1, testOpstelling);
+        Vakje pocket1 = eersteVakje.getVakjeOpPositie(1);
+        Vakje buurmanVanPocket2 = eersteVakje.getVakjeOpPositie(Vakje.totaalVakjes - 2);
+
+        ((Pocket) pocket1).zet();
+
+        assertEquals(0, buurmanVanPocket2.getAantalStenen());
     }
 
 

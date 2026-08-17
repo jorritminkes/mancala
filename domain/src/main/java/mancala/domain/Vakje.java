@@ -1,5 +1,7 @@
 package mancala.domain;
 
+import java.util.Optional;
+
 public abstract class Vakje {
     private final int pocketNumber;
     private int aantalStenen;
@@ -83,43 +85,8 @@ public abstract class Vakje {
         return (speler == eersteVakje.getEigenaar()) ? vakjesPerKant : totaalVakjes;
     }
 
-
-    public boolean isSpelAfgelopen() {
-        Speler speler1 = eersteVakje.getEigenaar();
-        Speler speler2 = speler1.getTegenstander();
-        return zijnPocketsLeegVanSpeler(speler1) || zijnPocketsLeegVanSpeler(speler2);
-    }
-
-    private boolean zijnPocketsLeegVanSpeler(Speler speler) {
-        int totaalStenen = getVakjeOpPositie(getStartPositie(speler)).telCollectieveStenenInPockets();
-        return (totaalStenen == 0);
-    }
-
-    abstract int telCollectieveStenenInPockets();
-
     abstract void verzamelStenenNaarMancala(int stenenTeVerzamelen);
 
 
-    public Speler getWinnaar() {
-        if (!isSpelAfgelopen()) {
-            return null; //misschien niet null. Misschien optional
-        }
-
-        Speler speler1 = eersteVakje.getEigenaar();
-        Speler speler2 = speler1.getTegenstander();
-
-        int stenenSpelerEen = getVakjeOpPositie(getMancalaPositie(speler1)).getAantalStenen();
-        int stenenSpelerTwee = getVakjeOpPositie(getMancalaPositie(speler2)).getAantalStenen();
-
-        //enum voor winnaar en moet alleen aangevraagd worden of reactie gegeven worden if isSpelAfgelopen
-        // Optional<speler> gebruiken
-        if (stenenSpelerEen > stenenSpelerTwee) {
-            return speler1;
-        }
-        if (stenenSpelerTwee > stenenSpelerEen) {
-            return speler2;
-        }
-        return null; // dit is eng
-    }
 
 }

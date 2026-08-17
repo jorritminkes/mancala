@@ -1,6 +1,8 @@
 package mancala.domain;
 
 
+import java.util.Optional;
+
 public class Pocket extends Vakje {
     private static final int[] standaardOpstelling = {4,4,4,4,4,4,0,4,4,4,4,4,4,0};
 
@@ -106,13 +108,11 @@ public class Pocket extends Vakje {
             int buurPocketNumber = getPocketNumberNeighbor(getPocketNumber());
             int buit = berekenBuitLeegVakje(buurPocketNumber, eigenPocketNumber);
 
-            //zet hier die if statement in nberekenBuitLeegVakje
-
-            // als de buurman nul heeft dan verdwijnt er een steentje
-
-            getVakjeOpPositie(getMancalaPositie(getEigenaar())).voegAantalStenenToeAanVakje(buit);
-            leegVakje();
-            getVakjeOpPositie(buurPocketNumber).leegVakje();
+            if (getVakjeOpPositie(buurPocketNumber).getAantalStenen() > 0) {
+                getVakjeOpPositie(getMancalaPositie(getEigenaar())).voegAantalStenenToeAanVakje(buit);
+                leegVakje();
+                getVakjeOpPositie(buurPocketNumber).leegVakje();
+            }
         }
     }
 
@@ -121,17 +121,48 @@ public class Pocket extends Vakje {
     }
 
     private int berekenBuitLeegVakje(int buurPocketNumber, int eigenPocketNumber) {
-        int buit = 0;
-        if (getVakjeOpPositie(buurPocketNumber).getAantalStenen() > 0) {
-            buit = getVakjeOpPositie(eigenPocketNumber).getAantalStenen() + getVakjeOpPositie(buurPocketNumber).getAantalStenen();
-        }
+        int buit = getVakjeOpPositie(eigenPocketNumber).getAantalStenen() + getVakjeOpPositie(buurPocketNumber).getAantalStenen();
         return buit;
     }
 
-    @Override
-    int telCollectieveStenenInPockets() {
-        return getAantalStenen() + getVolgendVakje().telCollectieveStenenInPockets();
+    public boolean isSpelAfgelopen() {
+        Speler speler1 = getEersteVakje().getEigenaar();
+        Speler speler2 = speler1.getTegenstander();
+        return zijnPocketsLeegVanSpeler(speler1) || zijnPocketsLeegVanSpeler(speler2);
     }
+
+    private boolean zijnPocketsLeegVanSpeler(Speler speler) {
+        int totaalStenen = ((Pocket) getVakjeOpPositie(getStartPositie(speler))).telCollectieveStenenInPockets(pocketsPerKant);
+        return (totaalStenen == 0);
+    }
+
+    int telCollectieveStenenInPockets(int aantalPocketsNogTeControleren) {
+        if (aantalPocketsNogTeControleren == 1) {
+            return getAantalStenen();
+        }
+        return getAantalStenen() + ((Pocket) getVolgendVakje()).telCollectieveStenenInPockets(aantalPocketsNogTeControleren - 1);
+    }
+
+    public Optional<Speler> getWinnaar() {
+        if (!isSpelAfgelopen()) {
+            throw new IllegalStateException("Spel is nog niet afgelopen");
+        }
+
+        Speler speler1 = getEersteVakje().getEigenaar();
+        Speler speler2 = speler1.getTegenstander();
+
+        int stenenSpelerEen = getVakjeOpPositie(getMancalaPositie(speler1)).getAantalStenen();
+        int stenenSpelerTwee = getVakjeOpPositie(getMancalaPositie(speler2)).getAantalStenen();
+
+        if (stenenSpelerEen > stenenSpelerTwee) {
+            return Optional.of(speler1);
+        }
+        if (stenenSpelerTwee > stenenSpelerEen) {
+            return Optional.of(speler2);
+        }
+        return Optional.empty();
+    }
+
 
 
 
